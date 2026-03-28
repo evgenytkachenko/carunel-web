@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Carunel Studio</title>
+  <meta name="description" content="Explore products by Carunel Studio. Thoughtful, calm, privacy-conscious digital products for children and families.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/images/carunel-symbol-transparent.png" type="image/png">
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="hero" style="background-color: var(--bg-primary);">
+    <div class="decor-circle decor-circle--sage" style="width: 300px; height: 300px; top: -60px; left: -80px;"></div>
+    <div class="container container--narrow">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+        <h1>Our products</h1>
+        <div class="divider divider--center"></div>
+        <p style="margin: 0 auto;">Each product we build reflects the same commitment to calm design, honest presentation, and respect for families.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2 reveal-stagger">
+
+        <!-- Beadwell -->
+        <a href="beadwell/index.html" class="product-card reveal" style="text-decoration: none;">
+          <div class="product-card__image">
+            <img src="assets/images/beadwell-logo.png" alt="Beadwell app icon" style="max-height: 100px;">
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag">Available now</span>
+            <h3 class="product-card__title mt-sm">Beadwell</h3>
+            <p class="product-card__desc">Calm, Montessori-aligned math practice for children ages 5 to 9. Offline-first, no accounts, no tracking. Short sessions with thoughtful progression and parent-facing tools.</p>
+          </div>
+        </a>
+
+        <!-- Coming Soon placeholder -->
+        <div class="product-card product-card--placeholder reveal">
+          <div class="product-card__image">
+            <div style="text-align: center;">
+              <div class="bead-dots" style="justify-content: center; margin-bottom: var(--space-sm);">
+                <span class="bead-dots__dot bead-dots__dot--sage"></span>
+                <span class="bead-dots__dot bead-dots__dot--gold"></span>
+                <span class="bead-dots__dot bead-dots__dot--sage"></span>
+              </div>
+              <p class="text-tertiary text-sm">More to come</p>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag" style="color: var(--text-tertiary); background-color: var(--bg-sand);">Coming soon</span>
+            <h3 class="product-card__title mt-sm" style="color: var(--text-tertiary);">Future product</h3>
+            <p class="product-card__desc">We're working on more thoughtful experiences for children and families. Follow along for updates.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cream">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <h2>Interested in what we're building?</h2>
+        <div class="divider divider--center"></div>
+        <p style="margin: 0 auto;" class="mt-sm">We'd love to hear from you.</p>
+        <div class="mt-lg" style="display: flex; justify-content: center;">
+          <a href="contact.html" class="btn btn--primary">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

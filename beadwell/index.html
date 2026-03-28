@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beadwell — Calm Math Practice for Curious Kids</title>
+  <meta name="description" content="Beadwell is a calm, Montessori-aligned math practice app for children ages 5–9. Offline-first, no accounts, no tracking. Thoughtful practice with parent-facing tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../assets/images/carunel-symbol-transparent.png" type="image/png">
+  <style>
+    /* Beadwell-specific overrides — slightly warmer palette */
+    .beadwell-hero {
+      background-color: var(--bg-blush);
+      position: relative;
+      overflow: hidden;
+    }
+    .beadwell-section--warm {
+      background-color: #F8F0EA;
+    }
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-md);
+      flex-shrink: 0;
+    }
+    .feature-icon--sage { background-color: rgba(143, 168, 122, 0.15); color: var(--accent-sage); }
+    .feature-icon--terracotta { background-color: rgba(196, 130, 109, 0.12); color: var(--accent-terracotta); }
+    .feature-icon--blue { background-color: rgba(139, 164, 184, 0.15); color: var(--accent-blue); }
+    .feature-icon--gold { background-color: rgba(200, 168, 78, 0.12); color: var(--accent-gold); }
+
+    .feature-list-item {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      padding: var(--space-md) 0;
+    }
+    .feature-list-item + .feature-list-item {
+      border-top: 1px solid rgba(74, 67, 60, 0.06);
+    }
+
+    .screenshot-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    /* Parent portal gallery — featured + supporting */
+    .parent-gallery__featured {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    .parent-gallery__featured .device-frame {
+      max-width: 560px;
+      width: 100%;
+    }
+    .parent-gallery__supporting {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+    .parent-gallery__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .parent-gallery__item .device-frame {
+      max-width: 100%;
+      width: 100%;
+    }
+    .parent-gallery__caption {
+      text-align: center;
+      padding: var(--space-md) var(--space-sm) 0;
+      max-width: 420px;
+    }
+    .parent-gallery__title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .parent-gallery__desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .parent-gallery__supporting {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    /* Hero visual layering */
+    .hero__visual-layered {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__visual-bg {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 168, 78, 0.07) 0%, rgba(143, 168, 122, 0.05) 50%, transparent 100%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (max-width: 768px) {
+      .hero__visual-bg { width: 260px; height: 260px; }
+    }
+
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background-color: rgba(143, 168, 122, 0.1);
+      color: var(--accent-sage);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .privacy-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero beadwell-hero">
+    <div class="decor-circle decor-circle--gold" style="width: 500px; height: 500px; top: -150px; right: -150px;"></div>
+    <div class="decor-circle decor-circle--sage" style="width: 300px; height: 300px; bottom: -80px; left: -80px;"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="bead-dots mb-md">
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+            <span class="bead-dots__dot bead-dots__dot--sage"></span>
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+          </div>
+          <h1>Calm math practice for curious kids.</h1>
+          <p>A tablet-based math practice app that feels focused, gentle, and clear. Short sessions, thoughtful progression, and a quiet parent area for guidance and insight — all offline, all on your device.</p>
+          <div class="btn-group">
+            <span class="privacy-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+              Offline-first &middot; No data collection
+            </span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__visual-layered">
+            <div class="hero__visual-bg"></div>
+            <div class="device-frame device-frame--lg" style="position: relative; z-index: 1;">
+              <div class="device-frame__screen">
+                <img src="../assets/images/beadwell-menu.png" alt="Beadwell main menu — Practice, Choose Your Work, Special Work, My Bead, My Learning">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Beadwell Is -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <h2>Practice that follows readiness</h2>
+        <div class="divider"></div>
+        <p class="mt-md">Beadwell provides structured math practice for children in Kindergarten through Grade 3. Activities follow Montessori developmental principles: hands-on counting and matching for younger children, then a gradual transition to symbolic math as readiness grows.</p>
+        <p class="mt-md">Sessions are short — 5 to 15 questions — with gentle feedback and no time pressure. Children advance when they're ready, not when they've filled a progress bar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes It Different -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Designed differently</h2>
+        <div class="divider divider--center"></div>
+        <p>Beadwell is built on a simple idea: children learn well when they feel calm.</p>
+      </div>
+
+      <div class="grid grid--2 reveal-stagger">
+        <div class="card reveal">
+          <h3 class="card__title">No game economy</h3>
+          <p class="card__text">No coins, levels, streaks, or leaderboards. Progress is measured by understanding, not points.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">No child-facing scores</h3>
+          <p class="card__text">Children see gentle encouragement and natural feedback — never accuracy percentages or rankings.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">Mastery before advancement</h3>
+          <p class="card__text">New concepts appear when skills are solid, not when a set number of questions have been answered.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">Personal, not generic</h3>
+          <p class="card__text">Parent-created missions with personal messages and family photos — not app-generated prizes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <h2>What's inside</h2>
+        <div class="divider divider--center"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--sage">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Calm practice sessions</h3>
+            <p class="card__text">Short, focused sessions with no timers, no pressure, and gentle feedback. Activities feel like working with materials, not playing a game.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--terracotta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Thoughtful progression</h3>
+            <p class="card__text">15 activity types across four developmental tiers. Concrete before abstract, mastery before advancement — following Montessori principles from counting objects to equation balance.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Parent tools and insight</h3>
+            <p class="card__text">Per-skill accuracy, trends, and session summaries in plain language. Actionable suggestions you can turn into custom practice missions in one tap.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--gold">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Offline-first privacy</h3>
+            <p class="card__text">All data stays on your device. No accounts, no cloud sync, no analytics, no telemetry. This is a product commitment, not a temporary limitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parent Portal -->
+  <section class="section section--cream">
+    <div class="container">
+
+      <!-- Intro -->
+      <div class="section-header reveal">
+        <div class="bead-dots mb-md" style="justify-content: center;">
+          <span class="bead-dots__dot bead-dots__dot--gold"></span>
+          <span class="bead-dots__dot bead-dots__dot--sage"></span>
+          <span class="bead-dots__dot bead-dots__dot--gold"></span>
+        </div>
+        <h2>Guidance for parents, calm for children</h2>
+        <div class="divider divider--center"></div>
+        <p>Beadwell keeps the child experience focused and pressure-free, while giving parents a protected space for guidance, setup, and insight.</p>
+      </div>
+
+      <!-- Gallery: featured + supporting -->
+      <div class="parent-gallery__featured reveal">
+        <div class="device-frame">
+          <div class="device-frame__screen">
+            <img src="../assets/images/beadwell-parent-landscape.png" alt="Beadwell learning landscape — curriculum map with mastery stages for every math area" loading="lazy">
+          </div>
+        </div>
+        <div class="parent-gallery__caption">
+          <h3 class="parent-gallery__title">Learning landscape</h3>
+          <p class="parent-gallery__desc">See where your child stands across every math area — which skills are comfortable, which are developing, and what comes next. No scores, just clear developmental stages.</p>
+        </div>
+      </div>
+
+      <div class="parent-gallery__supporting reveal-stagger">
+        <div class="parent-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/beadwell-parent-session.png" alt="Beadwell session detail — what was practiced, accuracy, focus areas" loading="lazy">
+            </div>
+          </div>
+          <div class="parent-gallery__caption">
+            <h3 class="parent-gallery__title">Session detail</h3>
+            <p class="parent-gallery__desc">After each session, see what your child practiced, how comfortable they seemed, and which skills are becoming natural — in honest, gentle language.</p>
+          </div>
+        </div>
+
+        <div class="parent-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/beadwell-parent-missions.png" alt="Beadwell actionable suggestions — turn insights into targeted practice missions" loading="lazy">
+            </div>
+          </div>
+          <div class="parent-gallery__caption">
+            <h3 class="parent-gallery__title">Actionable suggestions</h3>
+            <p class="parent-gallery__desc">When the app notices an area that could use more practice, it suggests a focused mission you can create in one tap — with the right skill and level already chosen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <div class="reveal mt-xl" style="text-align: center;">
+        <p style="font-style: italic; color: var(--text-secondary); max-width: 520px; margin: 0 auto;">The result is a different kind of learning app: less pressure for children, more clarity for parents.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Screenshot Showcase -->
+  <section class="section beadwell-section--warm">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>A closer look</h2>
+        <div class="divider divider--center"></div>
+        <p>Beadwell's interface is designed to feel warm and uncluttered — a calm workspace for focused practice.</p>
+      </div>
+      <div class="screenshot-gallery reveal-stagger">
+        <div class="reveal" style="text-align: center;">
+          <div class="device-frame" style="margin: 0 auto;">
+            <div class="device-frame__screen">
+              <img src="../assets/images/beadwell-splash.png" alt="Beadwell splash screen — Calm math practice for curious kids" loading="lazy">
+            </div>
+          </div>
+          <p class="text-sm text-tertiary mt-sm">Splash screen</p>
+        </div>
+        <div class="reveal" style="text-align: center;">
+          <div class="device-frame" style="margin: 0 auto;">
+            <div class="device-frame__screen">
+              <img src="../assets/images/beadwell-practice.png" alt="Beadwell practice activity — ordering numbers with bead-based visual aids" loading="lazy">
+            </div>
+          </div>
+          <p class="text-sm text-tertiary mt-sm">Practice activity with concrete visual aids</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy / Offline Section -->
+  <section class="section">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-row__text">
+          <h2>Built for trust</h2>
+          <div class="divider"></div>
+          <p class="mt-md">Beadwell has no internet permission in its production build. There are no analytics SDKs, no crash reporting, no authentication systems, and no API endpoints. Your child's practice data, your family's celebration photos, and your settings all stay on your device.</p>
+          <p class="mt-md">You can export your data at any time through the parent settings. You can reset everything with a single action. And if you uninstall the app, every trace of it leaves with it.</p>
+          <div class="mt-lg" style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+            <a href="privacy/" class="btn btn--secondary btn--sm">Privacy Policy</a>
+            <a href="terms/" class="btn btn--secondary btn--sm">Terms of Use</a>
+          </div>
+        </div>
+        <div class="feature-row__visual" style="display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center; padding: var(--space-xl);">
+            <div style="width: 120px; height: 120px; border-radius: 50%; background-color: rgba(143, 168, 122, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <p style="font-weight: 500; color: var(--text-primary);">Offline-first</p>
+            <p class="text-sm text-tertiary">No data leaves your device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cream">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <img src="../assets/images/beadwell-logo.png" alt="Beadwell" style="height: 64px; margin: 0 auto var(--space-md);">
+        <h2>Calm math practice for curious kids</h2>
+        <div class="divider divider--center"></div>
+        <p style="margin: var(--space-sm) auto 0;">Ages 5–9 &middot; Kindergarten through Grade 3 &middot; Tablet-focused</p>
+        <div class="mt-lg" style="display: flex; justify-content: center; flex-wrap: wrap;">
+          <a href="../contact.html" class="btn btn--primary">Ask about Beadwell</a>
+        </div>
+        <div style="display: flex; justify-content: center; gap: var(--space-md); margin-top: var(--space-md);">
+          <a href="privacy/" class="btn btn--secondary btn--sm">Privacy Policy</a>
+          <a href="terms/" class="btn btn--secondary btn--sm">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

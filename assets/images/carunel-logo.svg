@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 146" fill="none">
+  <!-- Seed/sprout symbol -->
+  <g transform="translate(18, 10)">
+    <!-- Seed body -->
+    <ellipse cx="38" cy="88" rx="26" ry="34" transform="rotate(-8 38 88)" fill="#A68468"/>
+    <!-- Seed highlight -->
+    <ellipse cx="34" cy="82" rx="14" ry="20" transform="rotate(-8 34 82)" fill="#B89578" opacity="0.6"/>
+    <!-- Stem -->
+    <path d="M44 58 C47 42 52 28 56 16" stroke="#8B9E6B" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <!-- Left leaf -->
+    <path d="M56 16 C44 6 34 14 42 28 C48 22 54 18 56 16Z" fill="#8B9E6B"/>
+    <!-- Right leaf -->
+    <path d="M56 16 C68 6 78 14 68 28 C62 22 58 18 56 16Z" fill="#A0B280"/>
+  </g>
+  <!-- Text: Carunel Studio -->
+  <text x="120" y="92" font-family="'DM Serif Display', Georgia, serif" font-size="58" font-weight="400" fill="#8B7362" letter-spacing="0.5">Carunel Studio</text>
+</svg>

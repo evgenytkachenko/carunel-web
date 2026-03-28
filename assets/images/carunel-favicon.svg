@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Seed body -->
+  <ellipse cx="24" cy="42" rx="14" ry="18" transform="rotate(-10 24 42)" fill="#A07B5A"/>
+  <ellipse cx="24" cy="42" rx="10" ry="14" transform="rotate(-10 24 42)" fill="#B08C6A" opacity="0.5"/>
+  <!-- Sprout stem -->
+  <path d="M28 30 C30 22 32 16 34 12" stroke="#8B9E6B" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Sprout leaves -->
+  <path d="M34 12 C28 8 24 12 28 18" fill="#8B9E6B"/>
+  <path d="M34 12 C40 8 44 12 38 18" fill="#A0B280"/>
+</svg>

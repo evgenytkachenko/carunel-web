@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carunel Studio — Thoughtful Digital Products for Children and Families</title>
+  <meta name="description" content="Carunel Studio creates calm, privacy-conscious digital experiences designed with warmth, clarity, and care.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/images/carunel-symbol-transparent.png" type="image/png">
+</head>
+<body>
+  <!-- Header and footer injected by main.js -->
+
+  <style>
+    /* Homepage-specific styles */
+    .hero__visual-stack {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__visual-stack .decor-circle--behind {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 168, 78, 0.08) 0%, rgba(143, 168, 122, 0.06) 60%, transparent 100%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .hero__visual-stack .device-frame {
+      position: relative;
+      z-index: 1;
+    }
+    .hero__visual-stack .decor-bead {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .hero-signals {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .hero-signal {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+    .hero-signal__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .hero-signal__dot--sage { background-color: var(--accent-sage); opacity: 0.7; }
+    .hero-signal__dot--terracotta { background-color: var(--accent-terracotta); opacity: 0.6; }
+    .hero-signal__dot--blue { background-color: var(--accent-blue); opacity: 0.7; }
+    @media (max-width: 768px) {
+      .hero__visual-stack .decor-circle--behind { width: 260px; height: 260px; }
+      .hero__visual-stack .decor-bead { display: none; }
+      .hero-signals { justify-content: center; }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section class="hero" style="background-color: var(--bg-primary);">
+    <!-- Decorative circles -->
+    <div class="decor-circle decor-circle--sage" style="width: 400px; height: 400px; top: -100px; right: -80px;"></div>
+    <div class="decor-circle decor-circle--sand" style="width: 280px; height: 280px; bottom: -60px; left: -60px;"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="bead-dots mb-md">
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+            <span class="bead-dots__dot bead-dots__dot--sage"></span>
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+          </div>
+          <h1>Thoughtful digital products for children and families.</h1>
+          <p>Carunel Studio creates calm, privacy-conscious experiences designed with warmth, clarity, and care.</p>
+          <div class="btn-group">
+            <a href="beadwell/index.html" class="btn btn--primary">Explore Beadwell</a>
+            <a href="contact.html" class="btn btn--secondary">Contact</a>
+          </div>
+          <div class="hero-signals">
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Offline-first</span>
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--terracotta"></span> Calm by design</span>
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--blue"></span> Parent-aware</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__visual-stack">
+            <div class="decor-circle--behind"></div>
+            <div class="decor-bead" style="width: 18px; height: 18px; background-color: var(--accent-gold); top: 12%; right: 6%; opacity: 0.25;"></div>
+            <div class="decor-bead" style="width: 12px; height: 12px; background-color: var(--accent-sage); bottom: 16%; left: 4%; opacity: 0.2;"></div>
+            <div class="decor-bead" style="width: 10px; height: 10px; background-color: var(--accent-terracotta); top: 60%; right: 2%; opacity: 0.15;"></div>
+            <div class="device-frame" style="max-width: 520px; padding: 18px;">
+              <div class="device-frame__screen">
+                <img src="assets/images/beadwell-splash.png" alt="Beadwell — Calm math practice for curious kids">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Intro -->
+  <section class="section--sm section--cream" style="padding: var(--space-xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>A studio built around care</h2>
+        <div class="divider divider--center"></div>
+        <p>We believe children deserve digital experiences that respect their time, attention, and privacy. Every product we make reflects that belief — from the way sessions end to the data we choose not to collect.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What guides us</h2>
+        <div class="divider divider--center"></div>
+      </div>
+      <div class="grid grid--3 reveal-stagger">
+        <div class="card reveal">
+          <div class="card__icon card__icon--terracotta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Thoughtful design</h3>
+          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">Every interaction is considered. We design for clarity, warmth, and focus — not engagement metrics or time-on-screen.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon card__icon--sage">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22c0-8-8-12-8-12s8-4 8-12c0 8 8 4 8 12s-8 12-8 12z"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Calm learning</h3>
+          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">No flashing rewards, no pressure timers, no noisy feedback loops. Our products create space for children to think and grow at their own pace.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon card__icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Privacy-conscious by default</h3>
+          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">We don't collect data we don't need. Our products work offline, respect family boundaries, and keep information on your device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Product: Beadwell -->
+  <section class="section section--blush">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row__visual reveal">
+          <div class="device-frame device-frame--lg">
+            <div class="device-frame__screen">
+              <img src="assets/images/beadwell-menu.png" alt="Beadwell main menu — Practice, Choose Your Work, Special Work, My Bead, My Learning" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="feature-row__text reveal">
+          <div class="bead-dots mb-sm">
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+            <span class="bead-dots__dot bead-dots__dot--sage"></span>
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+          </div>
+          <h2>Meet Beadwell</h2>
+          <div class="divider"></div>
+          <p style="line-height: 1.8;">Calm, Montessori-aligned math practice for children ages 5 to 9. Short sessions, thoughtful progression, and a quiet parent area for insight and guided practice — all offline, all on your device.</p>
+          <div class="mt-lg">
+            <a href="beadwell/index.html" class="btn btn--primary">Explore Beadwell</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
