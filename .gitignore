@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Claude Code local settings
+.claude/
+
+# Private task/notes files (per CLAUDE.md convention)
+/.*.md
+
+# Internal product docs — kept local, not published
+beadwell-memory/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
