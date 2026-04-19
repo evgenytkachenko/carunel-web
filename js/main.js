@@ -5,30 +5,36 @@
 (function () {
   'use strict';
 
-  /* --- Path helper for GitHub Pages subdirectory support --- */
-  function basePath() {
-    // Detect if running under a subdirectory (GitHub Pages project site)
-    const base = document.querySelector('base');
-    if (base) return base.getAttribute('href').replace(/\/$/, '');
+  /* --- Path helper --- */
+  // Compute the relative prefix from the current page to the site root.
+  // Works for any nesting depth: /, /beadwell/, /gentleclover/privacy/, etc.
+  function rootPrefix() {
+    const path = window.location.pathname;
+    const products = ['beadwell', 'gentleclover'];
+    for (const p of products) {
+      const idx = path.indexOf('/' + p + '/');
+      if (idx !== -1) {
+        // Count slashes after the product directory start
+        const after = path.substring(idx + p.length + 2);
+        const depth = (after.match(/\//g) || []).length + 1;
+        return '../'.repeat(depth);
+      }
+    }
     return '';
-  }
-
-  function resolvePath(path) {
-    const root = basePath();
-    return root + path;
   }
 
   /* --- Determine current page for nav active state --- */
   function currentPage() {
     const path = window.location.pathname;
     if (path.endsWith('/') || path.endsWith('/index.html')) {
-      // Could be root or /beadwell/
       if (path.includes('/beadwell')) return 'beadwell';
+      if (path.includes('/gentleclover')) return 'gentleclover';
       return 'home';
     }
     if (path.includes('/about')) return 'about';
     if (path.includes('/products')) return 'products';
     if (path.includes('/beadwell')) return 'beadwell';
+    if (path.includes('/gentleclover')) return 'gentleclover';
     if (path.includes('/contact')) return 'contact';
     return 'home';
   }
@@ -36,8 +42,7 @@
   /* --- Header Component --- */
   function renderHeader() {
     const page = currentPage();
-    const isSubdir = window.location.pathname.includes('/beadwell/');
-    const prefix = isSubdir ? '../' : '';
+    const prefix = rootPrefix();
 
     const active = (p) => page === p ? ' site-nav__link--active' : '';
 
@@ -53,6 +58,7 @@
           <a href="${prefix}index.html" class="site-nav__link${active('home')}">Home</a>
           <a href="${prefix}about.html" class="site-nav__link${active('about')}">About</a>
           <a href="${prefix}beadwell/index.html" class="site-nav__link${active('beadwell')}">Beadwell</a>
+          <a href="${prefix}gentleclover/index.html" class="site-nav__link${active('gentleclover')}">GentleClover</a>
           <a href="${prefix}contact.html" class="site-nav__link${active('contact')}">Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -63,7 +69,20 @@
       </div>
     `;
 
+    // Skip-to-content link
+    const skip = document.createElement('a');
+    skip.href = '#main-content';
+    skip.className = 'skip-link';
+    skip.textContent = 'Skip to content';
+    document.body.prepend(skip);
+
     document.body.prepend(header);
+
+    // Add main-content id to first section after header
+    const firstSection = document.querySelector('section, .legal-page');
+    if (firstSection && !firstSection.id) {
+      firstSection.id = 'main-content';
+    }
 
     // Mobile toggle
     const toggle = header.querySelector('.nav-toggle');
@@ -84,8 +103,7 @@
 
   /* --- Footer Component --- */
   function renderFooter() {
-    const isSubdir = window.location.pathname.includes('/beadwell/');
-    const prefix = isSubdir ? '../' : '';
+    const prefix = rootPrefix();
     const year = new Date().getFullYear();
 
     const footer = document.createElement('footer');
@@ -109,6 +127,12 @@
               <a href="${prefix}beadwell/index.html">Product</a>
               <a href="${prefix}beadwell/privacy/">Privacy Policy</a>
               <a href="${prefix}beadwell/terms/">Terms of Use</a>
+            </div>
+            <div class="site-footer__link-group">
+              <h4>GentleClover</h4>
+              <a href="${prefix}gentleclover/index.html">Product</a>
+              <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
+              <a href="${prefix}gentleclover/terms/">Terms of Use</a>
             </div>
           </div>
         </div>

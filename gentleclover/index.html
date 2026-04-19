@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GentleClover — Calm Activities for Kids Ages 3 to 7</title>
+  <meta name="description" content="A calm, offline activity app for children ages 3 to 7. No ads, no accounts, no tracking. Just thoughtful play — explore, create, and discover at their own pace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../assets/images/carunel-symbol-transparent.png" type="image/png">
+  <style>
+    .gc-hero {
+      background-color: var(--bg-cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .gc-section--warm {
+      background-color: #EDF2E8;
+    }
+    /* feature-icon, feature-list-item, privacy-badge now in shared styles.css */
+
+    /* Screenshot gallery */
+    .gc-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-lg);
+    }
+    .gc-gallery__item {
+      text-align: center;
+    }
+    .gc-gallery__item .device-frame {
+      max-width: 100%;
+      width: 100%;
+    }
+    .gc-gallery__caption {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: var(--space-sm);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .gc-gallery { grid-template-columns: 1fr; }
+    }
+
+    /* Hero layering */
+    .gc-hero__visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gc-hero__bg {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(143, 168, 122, 0.08) 0%, rgba(143, 168, 122, 0.03) 60%, transparent 100%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (max-width: 768px) {
+      .gc-hero__bg { width: 260px; height: 260px; }
+    }
+
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .area-card {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+    }
+    .area-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+    }
+    .area-card__title {
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .area-card__desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .area-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero gc-hero">
+    <div class="decor-circle decor-circle--sage" style="width: 500px; height: 500px; top: -150px; right: -150px;"></div>
+    <div class="decor-circle decor-circle--sand" style="width: 300px; height: 300px; bottom: -80px; left: -80px;"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="bead-dots mb-md">
+            <span class="bead-dots__dot bead-dots__dot--sage"></span>
+            <span class="bead-dots__dot bead-dots__dot--gold"></span>
+            <span class="bead-dots__dot bead-dots__dot--sage"></span>
+          </div>
+          <h1>Calm, playful activities for quiet moments.</h1>
+          <p>A gentle offline app for children ages 3 to 7. No ads, no accounts, no subscriptions &mdash; just thoughtful activities children can explore at their own pace.</p>
+          <div class="btn-group">
+            <span class="privacy-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+              Offline-first &middot; No data collection
+            </span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="gc-hero__visual">
+            <div class="gc-hero__bg"></div>
+            <div class="device-frame device-frame--lg" style="position: relative; z-index: 1;">
+              <div class="device-frame__screen">
+                <img src="../assets/images/gc-home.png" alt="GentleClover — Play, Puzzles, Create, Travel">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What GentleClover Is -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <h2>A calm place to play</h2>
+        <div class="divider"></div>
+        <p class="mt-md">GentleClover is a quiet activity app designed for children ages 3 to 7. Over 20 activities across four areas &mdash; matching, puzzles, drawing, postcards, travel scenes, and more &mdash; all in a gentle, unhurried space.</p>
+        <p class="mt-md">There are no timers, no scores, no flashing rewards. Children explore at their own pace, and every activity ends with a warm sense of completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity Areas -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Four areas to explore</h2>
+        <div class="divider divider--center"></div>
+        <p>Each area offers a different kind of quiet engagement, with age-appropriate content for younger and older children.</p>
+      </div>
+
+      <div class="area-grid reveal-stagger">
+        <div class="area-card reveal">
+          <div class="area-card__icon" style="background-color: rgba(196, 130, 109, 0.12);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="9" height="9" rx="2"/>
+              <rect x="13" y="2" width="9" height="9" rx="2"/>
+              <rect x="2" y="13" width="9" height="9" rx="2"/>
+              <rect x="13" y="13" width="9" height="9" rx="2"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Play</h3>
+          <p class="area-card__desc">Matching, sorting, memory, odd one out, and more &mdash; gentle games that build focus.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-card__icon" style="background-color: rgba(139, 164, 184, 0.15);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Puzzles</h3>
+          <p class="area-card__desc">Jigsaw scenes, dot-to-dot shapes, and spatial challenges at every age level.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-card__icon" style="background-color: rgba(200, 168, 78, 0.12);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+              <path d="M2 2l7.586 7.586"/>
+              <circle cx="11" cy="11" r="2"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Create</h3>
+          <p class="area-card__desc">Draw and doodle, build scenes, place stickers, and make postcards to save.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-card__icon" style="background-color: rgba(143, 168, 122, 0.15);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Travel</h3>
+          <p class="area-card__desc">Travel pairs, destination puzzles, seek-and-find scenes, and packing adventures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes It Different -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <h2>Designed for calm</h2>
+        <div class="divider divider--center"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--sage">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22c0-8-8-12-8-12s8-4 8-12c0 8 8 4 8 12s-8 12-8 12z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">No pressure, no noise</h3>
+            <p class="card__text">No timers, no scores, no leaderboards, no flashing rewards. Activities end with a gentle sense of completion, not a push to play again.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--terracotta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Parent-friendly setup</h3>
+            <p class="card__text">Parents choose the age band, manage sound settings, and view activity summaries &mdash; all behind a simple parent gate. Children only see activities.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Age-appropriate content</h3>
+            <p class="card__text">Three age bands (3&ndash;4, 4&ndash;5, 6&ndash;7) adapt activity complexity so younger children aren't overwhelmed and older children aren't bored.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--gold">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Offline-first privacy</h3>
+            <p class="card__text">All data stays on your device. No accounts, no analytics, no advertising, no tracking. This is a product commitment, not a temporary limitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Everything Included -->
+  <section class="section gc-section--warm">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-row__text">
+          <h2>Everything included</h2>
+          <div class="divider"></div>
+          <p class="mt-md">GentleClover is a paid app with everything included. There are no in-app purchases, no subscriptions, no ads, and no locked content. You pay once, and your child has access to every activity and every piece of content from day one.</p>
+          <p class="mt-md">No monetization messaging is ever shown to the child.</p>
+        </div>
+        <div class="feature-row__visual reveal">
+          <div class="device-frame device-frame--lg">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-scenes.png" alt="GentleClover — choose a travel destination scene" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot Gallery -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>A closer look</h2>
+        <div class="divider divider--center"></div>
+        <p>Warm illustrations, gentle interactions, and quiet spaces for focused play.</p>
+      </div>
+      <div class="gc-gallery reveal-stagger">
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-puzzle.png" alt="Meadow puzzle — piece together the scene tile by tile" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Scene puzzle in progress</p>
+        </div>
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-seek.png" alt="Seek and find — spot the tree hidden in the landscape" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Seek and find</p>
+        </div>
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-draw.png" alt="Draw and doodle — finger drawing with a simple palette" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Draw and doodle</p>
+        </div>
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-postcard.png" alt="Postcard maker — decorate a scene with backgrounds and stickers" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Postcard maker</p>
+        </div>
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-bracelet.png" alt="Bracelet maker — place colored shapes on a bracelet" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Bracelet maker</p>
+        </div>
+        <div class="gc-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/gc-parent.png" alt="Parent area — age range, sound settings, activity summary" loading="lazy">
+            </div>
+          </div>
+          <p class="gc-gallery__caption">Parent area — age band, sound, and activity summary</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy / Offline Section -->
+  <section class="section">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-row__text">
+          <h2>Built for trust</h2>
+          <div class="divider"></div>
+          <p class="mt-md">GentleClover works entirely offline. There are no analytics SDKs, no crash reporting, no authentication systems, and no API endpoints. Your child's play data, saved creations, and settings all stay on your device.</p>
+          <p class="mt-md">You can reset all app data with a single action in the parent area. And if you uninstall the app, every trace of it leaves with it.</p>
+        </div>
+        <div class="feature-row__visual" style="display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center; padding: var(--space-xl);">
+            <div style="width: 120px; height: 120px; border-radius: 50%; background-color: rgba(143, 168, 122, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <p style="font-weight: 500; color: var(--text-primary);">Offline-first</p>
+            <p class="text-sm text-tertiary">No data leaves your device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cream">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <p style="font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: var(--space-sm);">GentleClover</p>
+        <h2>Calm activities. Quiet play.</h2>
+        <div class="divider divider--center"></div>
+        <p style="margin: var(--space-sm) auto 0;">Ages 3&ndash;7 &middot; Tablet-focused &middot; Everything included</p>
+        <div class="mt-lg" style="display: flex; justify-content: center; flex-wrap: wrap;">
+          <a href="../contact.html" class="btn btn--sage">Ask about GentleClover</a>
+        </div>
+        <div style="display: flex; justify-content: center; gap: var(--space-md); margin-top: var(--space-md);">
+          <a href="privacy/" class="btn btn--secondary btn--sm">Privacy Policy</a>
+          <a href="terms/" class="btn btn--secondary btn--sm">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

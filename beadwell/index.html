@@ -20,31 +20,6 @@
     .beadwell-section--warm {
       background-color: #F8F0EA;
     }
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-md);
-      flex-shrink: 0;
-    }
-    .feature-icon--sage { background-color: rgba(143, 168, 122, 0.15); color: var(--accent-sage); }
-    .feature-icon--terracotta { background-color: rgba(196, 130, 109, 0.12); color: var(--accent-terracotta); }
-    .feature-icon--blue { background-color: rgba(139, 164, 184, 0.15); color: var(--accent-blue); }
-    .feature-icon--gold { background-color: rgba(200, 168, 78, 0.12); color: var(--accent-gold); }
-
-    .feature-list-item {
-      display: flex;
-      gap: var(--space-md);
-      align-items: flex-start;
-      padding: var(--space-md) 0;
-    }
-    .feature-list-item + .feature-list-item {
-      border-top: 1px solid rgba(74, 67, 60, 0.06);
-    }
-
     .screenshot-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -121,22 +96,7 @@
       .hero__visual-bg { width: 260px; height: 260px; }
     }
 
-    .privacy-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-xs);
-      background-color: rgba(143, 168, 122, 0.1);
-      color: var(--accent-sage);
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-lg);
-    }
-
-    .privacy-badge svg {
-      width: 16px;
-      height: 16px;
-    }
+    /* privacy-badge and feature-icon/feature-list-item now in shared styles.css */
   </style>
 </head>
 <body>
@@ -231,19 +191,6 @@
       </div>
 
       <div class="reveal">
-        <div class="feature-list-item">
-          <div class="feature-icon feature-icon--sage">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="card__title">Calm practice sessions</h3>
-            <p class="card__text">Short, focused sessions with no timers, no pressure, and gentle feedback. Activities feel like working with materials, not playing a game.</p>
-          </div>
-        </div>
-
         <div class="feature-list-item">
           <div class="feature-icon feature-icon--terracotta">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -388,10 +335,6 @@
           <div class="divider"></div>
           <p class="mt-md">Beadwell has no internet permission in its production build. There are no analytics SDKs, no crash reporting, no authentication systems, and no API endpoints. Your child's practice data, your family's celebration photos, and your settings all stay on your device.</p>
           <p class="mt-md">You can export your data at any time through the parent settings. You can reset everything with a single action. And if you uninstall the app, every trace of it leaves with it.</p>
-          <div class="mt-lg" style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
-            <a href="privacy/" class="btn btn--secondary btn--sm">Privacy Policy</a>
-            <a href="terms/" class="btn btn--secondary btn--sm">Terms of Use</a>
-          </div>
         </div>
         <div class="feature-row__visual" style="display: flex; align-items: center; justify-content: center;">
           <div style="text-align: center; padding: var(--space-xl);">
