@@ -7,7 +7,7 @@
   <meta name="description" content="Carunel Studio creates calm, privacy-conscious digital experiences designed with warmth, clarity, and care.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="assets/images/carunel-symbol-transparent.png" type="image/png">
 </head>
@@ -76,23 +76,17 @@
 
   <!-- Hero -->
   <section class="hero" style="background-color: var(--bg-primary);">
-    <!-- Decorative circles -->
-    <div class="decor-circle decor-circle--sage" style="width: 400px; height: 400px; top: -100px; right: -80px;"></div>
-    <div class="decor-circle decor-circle--sand" style="width: 280px; height: 280px; bottom: -60px; left: -60px;"></div>
+    <!-- One soft wash -->
+    <div class="decor-circle decor-circle--sand" style="width: 520px; height: 520px; top: -180px; right: -160px; opacity: 0.35;"></div>
 
     <div class="container">
       <div class="hero__content">
         <div class="hero__text">
-          <div class="bead-dots mb-md">
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-            <span class="bead-dots__dot bead-dots__dot--sage"></span>
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-          </div>
-          <h1>Thoughtful digital products for children and families.</h1>
+          <span class="label-mono">Carunel Studio</span>
+          <h1 style="margin-top: var(--space-sm);">Thoughtful digital products for children and families.</h1>
           <p>Carunel Studio creates calm, privacy-conscious experiences designed with warmth, clarity, and care.</p>
           <div class="btn-group">
-            <a href="beadwell/index.html" class="btn btn--primary">Explore Beadwell</a>
-            <a href="gentleclover/index.html" class="btn btn--secondary">Explore GentleClover</a>
+            <a href="products.html" class="btn btn--primary">Meet our apps</a>
           </div>
           <div class="hero-signals">
             <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Offline-first</span>
@@ -136,33 +130,18 @@
         <div class="divider divider--center"></div>
       </div>
       <div class="grid grid--3 reveal-stagger">
-        <div class="card reveal">
-          <div class="card__icon card__icon--terracotta">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark">01 / Design</span>
           <h3 class="card__title">Thoughtful design</h3>
           <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">Every interaction is considered. We design for clarity, warmth, and focus — not engagement metrics or time-on-screen.</p>
         </div>
-        <div class="card reveal">
-          <div class="card__icon card__icon--sage">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22c0-8-8-12-8-12s8-4 8-12c0 8 8 4 8 12s-8 12-8 12z"/>
-            </svg>
-          </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark" style="color: var(--accent-sage);">02 / Learning</span>
           <h3 class="card__title">Calm learning</h3>
           <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">No flashing rewards, no pressure timers, no noisy feedback loops. Our products create space for children to think and grow at their own pace.</p>
         </div>
-        <div class="card reveal">
-          <div class="card__icon card__icon--blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0110 0v4"/>
-            </svg>
-          </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark" style="color: var(--accent-gold);">03 / Privacy</span>
           <h3 class="card__title">Privacy-conscious by default</h3>
           <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">We don't collect data we don't need. Our products work offline, respect family boundaries, and keep information on your device.</p>
         </div>
@@ -182,12 +161,8 @@
           </div>
         </div>
         <div class="feature-row__text reveal">
-          <div class="bead-dots mb-sm">
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-            <span class="bead-dots__dot bead-dots__dot--sage"></span>
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-          </div>
-          <h2>Meet Beadwell</h2>
+          <span class="label-mono">01 / Our apps — Ages 5–9</span>
+          <h2 style="margin-top: var(--space-sm);">Meet Beadwell</h2>
           <div class="divider"></div>
           <p style="line-height: 1.8;">Calm math practice for children ages 5 to 9. Short sessions, gentle feedback, and quiet parent insight — all offline, all on your device.</p>
           <div class="mt-lg">
@@ -210,12 +185,8 @@
           </div>
         </div>
         <div class="feature-row__text reveal">
-          <div class="bead-dots mb-sm">
-            <span class="bead-dots__dot bead-dots__dot--sage"></span>
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-            <span class="bead-dots__dot bead-dots__dot--sage"></span>
-          </div>
-          <h2>Meet GentleClover</h2>
+          <span class="label-mono" style="color: var(--accent-sage);">02 / Our apps — Ages 3–7</span>
+          <h2 style="margin-top: var(--space-sm);">Meet GentleClover</h2>
           <div class="divider"></div>
           <p style="line-height: 1.8;">Calm, offline activities for children ages 3 to 7. Matching, puzzles, creative building, and travel-themed exploration &mdash; no ads, no accounts, no tracking. Paid once, everything included.</p>
           <div class="mt-lg">

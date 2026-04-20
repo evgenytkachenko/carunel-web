@@ -105,15 +105,17 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2.6rem, 5.4vw, 4.2rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
   color: var(--text-primary);
 }
 
 h2 {
   font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 h3 {
@@ -265,6 +267,14 @@ p {
   color: var(--text-primary);
 }
 
+.site-nav__link--muted {
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+}
+.site-nav__link--muted:hover {
+  color: var(--text-primary);
+}
+
 .site-nav__link--active::after {
   content: '';
   position: absolute;
@@ -379,11 +389,11 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 1.6rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.925rem;
   font-weight: 500;
-  border-radius: var(--radius-lg);
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -1073,6 +1083,26 @@ p {
 .privacy-badge svg {
   width: 16px;
   height: 16px;
+}
+
+/* --- Mono label --- */
+.label-mono {
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.num-mark {
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta);
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: var(--space-sm);
 }
 
 /* --- Utility --- */

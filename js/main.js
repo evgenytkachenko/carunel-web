@@ -33,8 +33,8 @@
     }
     if (path.includes('/about')) return 'about';
     if (path.includes('/products')) return 'products';
-    if (path.includes('/beadwell')) return 'beadwell';
-    if (path.includes('/gentleclover')) return 'gentleclover';
+    if (path.includes('/beadwell')) return 'products';
+    if (path.includes('/gentleclover')) return 'products';
     if (path.includes('/contact')) return 'contact';
     return 'home';
   }
@@ -55,11 +55,10 @@
             <img src="${prefix}assets/images/carunel-logo-transparent.png" alt="Carunel Studio" class="site-header__logo-img">
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix}index.html" class="site-nav__link${active('home')}">Home</a>
+          <a href="${prefix}index.html" class="site-nav__link${active('home')}">Studio</a>
           <a href="${prefix}about.html" class="site-nav__link${active('about')}">About</a>
-          <a href="${prefix}beadwell/index.html" class="site-nav__link${active('beadwell')}">Beadwell</a>
-          <a href="${prefix}gentleclover/index.html" class="site-nav__link${active('gentleclover')}">GentleClover</a>
-          <a href="${prefix}contact.html" class="site-nav__link${active('contact')}">Contact</a>
+          <a href="${prefix}products.html" class="site-nav__link${active('products')}">Products</a>
+          <a href="${prefix}contact.html" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span class="nav-toggle__bar"></span>
@@ -138,11 +137,6 @@
         </div>
         <div class="site-footer__bottom">
           <span class="site-footer__copyright">&copy; ${year} Carunel Studio. All rights reserved.</span>
-          <div class="bead-dots">
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-            <span class="bead-dots__dot bead-dots__dot--sage"></span>
-            <span class="bead-dots__dot bead-dots__dot--gold"></span>
-          </div>
         </div>
       </div>
     `;
