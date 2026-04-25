@@ -133,6 +133,11 @@
               <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
               <a href="${prefix}gentleclover/terms/">Terms of Use</a>
             </div>
+            <div class="site-footer__link-group">
+              <h4>Follow</h4>
+              <a href="https://www.facebook.com/carunelstudio" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.instagram.com/carunelstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
           </div>
         </div>
         <div class="site-footer__bottom">
