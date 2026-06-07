@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizWell — Calm Math Practice for Kids</title>
+  <meta name="description" content="Prepare for school math quizzes and tests. Parent-guided, fully offline, no ads. Focused practice with personal encouragement for children ages 6–12.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../assets/images/quizwell-logo.png" type="image/png">
+  <style>
+    .qw-hero {
+      background-color: #F2F5EE;
+      position: relative;
+      overflow: hidden;
+    }
+    .qw-section--green {
+      background-color: #EAF0E5;
+    }
+    .qw-accent { color: #5A7A52; }
+
+    /* Hero visual layering */
+    .qw-hero__visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qw-hero__bg {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(143, 168, 122, 0.1) 0%, rgba(143, 168, 122, 0.04) 60%, transparent 100%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (max-width: 768px) {
+      .qw-hero__bg { width: 260px; height: 260px; }
+    }
+
+    /* Signal pills — matching product card style */
+    .qw-signals {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .qw-signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(143, 168, 122, 0.25);
+      border-radius: 99px;
+      padding: 0.35rem 0.85rem;
+    }
+    .qw-signal svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      stroke: var(--accent-sage);
+    }
+
+    /* Screenshot gallery */
+    .qw-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .qw-gallery__item {
+      text-align: center;
+    }
+    .qw-gallery__item .device-frame {
+      width: 100%;
+    }
+    .qw-gallery__caption {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: var(--space-sm);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .qw-gallery { grid-template-columns: 1fr; }
+    }
+
+    /* Quiz type grid */
+    .quiz-type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .quiz-type-card {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-type-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+    }
+    .quiz-type-card__title {
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .quiz-type-card__desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .quiz-type-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero qw-hero">
+    <div class="decor-circle decor-circle--sage" style="width: 500px; height: 500px; top: -150px; right: -150px; opacity: 0.5;"></div>
+    <div class="decor-circle decor-circle--sand" style="width: 300px; height: 300px; bottom: -80px; left: -80px;"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <span class="label-mono" style="color: var(--accent-sage);">QuizWell · Ages 6–12</span>
+          <h1 style="margin-top: var(--space-sm);">Calm math practice that prepares kids for school quizzes.</h1>
+          <p>Short, focused sessions that mirror real classroom quizzes — without the stress. Personal encouragement from parents, no ads, and everything stays on your device.</p>
+          <div class="qw-signals">
+            <span class="qw-signal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Parent-guided
+            </span>
+            <span class="qw-signal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.56 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"/>
+              </svg>
+              Fully offline
+            </span>
+            <span class="qw-signal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+              </svg>
+              No ads
+            </span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="qw-hero__visual">
+            <div class="qw-hero__bg"></div>
+            <div class="device-frame device-frame--lg" style="position: relative; z-index: 1;">
+              <div class="device-frame__screen">
+                <img src="../assets/images/quizwell-home_page.png" alt="QuizWell home screen — start a quiz, view history, see your child's progress">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Banner -->
+  <section style="padding: 0 0 var(--space-xl);">
+    <div class="container reveal">
+      <img src="../assets/images/quizwell-product-card.png" alt="QuizWell — Calm Math Practice for Kids" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); display: block;">
+    </div>
+  </section>
+
+  <!-- What QuizWell Is -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <h2>Practice that mirrors real school quizzes</h2>
+        <div class="divider"></div>
+        <p class="mt-md">QuizWell helps children ages 6 to 12 prepare for school math quizzes and tests. Each session is structured like a real quiz — a set number of questions, a clear topic, and honest results at the end — without the pressure or anxiety that often comes with test prep.</p>
+        <p class="mt-md">Parents set up the quiz topic and leave an encouraging message. Children work through it calmly, at their own pace. When they're done, parents get a clear view of what went well and what needs more practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes It Different -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Focused practice, personal encouragement</h2>
+        <div class="divider divider--center"></div>
+        <p>QuizWell is built around one idea: children do better when they feel supported, not pressured.</p>
+      </div>
+
+      <div class="grid grid--2 reveal-stagger">
+        <div class="card reveal">
+          <h3 class="card__title">Parent-created quizzes</h3>
+          <p class="card__text">Parents choose the topic, number of questions, and difficulty. A personal note from a parent turns a practice quiz into something meaningful.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">No noisy rewards</h3>
+          <p class="card__text">No coins, no leaderboards, no flashing animations. Children see their results clearly, with calm encouragement — not a scorecard designed to keep them hooked.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">Honest results for parents</h3>
+          <p class="card__text">After each quiz, parents see exactly which questions were answered correctly, which were missed, and where to focus next. No vanity metrics.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">Quiz history at a glance</h3>
+          <p class="card__text">Track progress over time. See how your child is improving on specific topics — addition, subtraction, multiplication, fractions, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <h2>What's inside</h2>
+        <div class="divider divider--center"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--sage">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">School-aligned quiz topics</h3>
+            <p class="card__text">Addition, subtraction, multiplication, division, fractions, decimals, and more — covering Grade 1 through Grade 6. Topics align with what children are actually learning in school.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--terracotta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Personal encouragement from parents</h3>
+            <p class="card__text">Before each quiz, parents can leave a personal note. Children see it at the start — a quiet message from someone who believes in them, exactly when it matters.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Progress insights for parents</h3>
+            <p class="card__text">Detailed session history, topic-by-topic accuracy, and trends over time — all visible to parents. A clear picture of where your child is growing and where to focus next.</p>
+          </div>
+        </div>
+
+        <div class="feature-list-item">
+          <div class="feature-icon feature-icon--gold">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="card__title">Offline-first privacy</h3>
+            <p class="card__text">All quiz data, results, and progress stay on your device. No accounts, no cloud sync, no analytics, no advertising. This is a product commitment, not a temporary limitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section qw-section--green">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>A closer look</h2>
+        <div class="divider divider--center"></div>
+        <p>A calm, focused workspace designed for children to do their best work.</p>
+      </div>
+      <div class="qw-gallery reveal-stagger">
+        <div class="qw-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-new_quiz.png" alt="QuizWell — set up a new quiz for your child" loading="lazy">
+            </div>
+          </div>
+          <p class="qw-gallery__caption">Parent creates a quiz — topic, length, and a personal note</p>
+        </div>
+        <div class="qw-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-quiz_in_progress.png" alt="QuizWell — a child works through a math quiz" loading="lazy">
+            </div>
+          </div>
+          <p class="qw-gallery__caption">Clean, distraction-free quiz interface for children</p>
+        </div>
+        <div class="qw-gallery__item reveal">
+          <div class="device-frame">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-completion.png" alt="QuizWell — quiz complete with calm results screen" loading="lazy">
+            </div>
+          </div>
+          <p class="qw-gallery__caption">Honest results, gently presented</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parent Portal -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label-mono">Parent portal</span>
+        <h2 style="margin-top: var(--space-sm);">Clear insight for parents, calm focus for children</h2>
+        <div class="divider divider--center"></div>
+        <p>Children see a focused quiz and a message from you. You see detailed results, history, and insights — all in one place.</p>
+      </div>
+
+      <div class="grid grid--2 reveal-stagger" style="margin-top: var(--space-lg);">
+        <div class="reveal" style="text-align: center;">
+          <div class="device-frame" style="margin: 0 auto;">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-04_parent_portal.png" alt="QuizWell parent portal — see all quiz results and insights" loading="lazy">
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: var(--space-sm);">Parent portal overview</p>
+        </div>
+        <div class="reveal" style="text-align: center;">
+          <div class="device-frame" style="margin: 0 auto;">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-insights.png" alt="QuizWell insights — topic accuracy and progress trends" loading="lazy">
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: var(--space-sm);">Topic insights and trends</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History & Rewards -->
+  <section class="section">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-row__text">
+          <h2>Practice builds confidence</h2>
+          <div class="divider"></div>
+          <p class="mt-md">QuizWell tracks every session so children and parents can see real progress. Quiz history shows which topics were practiced, when, and how results improved over time.</p>
+          <p class="mt-md">Children earn quiet recognition for their effort — calm rewards that celebrate improvement without turning practice into a competition.</p>
+        </div>
+        <div class="feature-row__visual reveal">
+          <div class="device-frame device-frame--lg">
+            <div class="device-frame__screen">
+              <img src="../assets/images/quizwell-history.png" alt="QuizWell history — see all past quiz sessions and results" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy / Offline Section -->
+  <section class="section qw-section--green">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-row__text">
+          <h2>Built for trust</h2>
+          <div class="divider"></div>
+          <p class="mt-md">QuizWell has no internet permission in its production build. There are no analytics SDKs, no crash reporting, no authentication systems, and no API endpoints. Your child's quiz data, results, and parent messages all stay on your device.</p>
+          <p class="mt-md">You can reset all data at any time in the parent settings. And if you uninstall the app, every trace of it leaves with it.</p>
+        </div>
+        <div class="feature-row__visual" style="display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center; padding: var(--space-xl);">
+            <div style="width: 120px; height: 120px; border-radius: 50%; background-color: rgba(143, 168, 122, 0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <p style="font-weight: 500; color: var(--text-primary);">Offline-first</p>
+            <p class="text-sm text-tertiary">No data leaves your device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cream">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <img src="../assets/images/quizwell-logo.png" alt="QuizWell" style="height: 80px; margin: 0 auto var(--space-md); border-radius: var(--radius-md);">
+        <h2>Calm math practice. Personal encouragement.</h2>
+        <div class="divider divider--center"></div>
+        <p style="margin: var(--space-sm) auto 0;">Ages 6–12 &middot; Grades 1–6 &middot; Tablet-focused</p>
+        <div class="mt-lg" style="display: flex; justify-content: center; flex-wrap: wrap;">
+          <a href="../contact.html" class="btn btn--sage">Ask about QuizWell</a>
+        </div>
+        <div style="display: flex; justify-content: center; gap: var(--space-md); margin-top: var(--space-md);">
+          <a href="privacy/" class="btn btn--secondary btn--sm">Privacy Policy</a>
+          <a href="terms/" class="btn btn--secondary btn--sm">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

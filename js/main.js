@@ -10,7 +10,7 @@
   // Works for any nesting depth: /, /beadwell/, /gentleclover/privacy/, etc.
   function rootPrefix() {
     const path = window.location.pathname;
-    const products = ['beadwell', 'gentleclover'];
+    const products = ['beadwell', 'gentleclover', 'quizwell'];
     for (const p of products) {
       const idx = path.indexOf('/' + p + '/');
       if (idx !== -1) {
@@ -29,12 +29,14 @@
     if (path.endsWith('/') || path.endsWith('/index.html')) {
       if (path.includes('/beadwell')) return 'beadwell';
       if (path.includes('/gentleclover')) return 'gentleclover';
+      if (path.includes('/quizwell')) return 'quizwell';
       return 'home';
     }
     if (path.includes('/about')) return 'about';
     if (path.includes('/products')) return 'products';
     if (path.includes('/beadwell')) return 'products';
     if (path.includes('/gentleclover')) return 'products';
+    if (path.includes('/quizwell')) return 'products';
     if (path.includes('/contact')) return 'contact';
     return 'home';
   }
@@ -132,6 +134,12 @@
               <a href="${prefix}gentleclover/index.html">Product</a>
               <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
               <a href="${prefix}gentleclover/terms/">Terms of Use</a>
+            </div>
+            <div class="site-footer__link-group">
+              <h4>QuizWell</h4>
+              <a href="${prefix}quizwell/index.html">Product</a>
+              <a href="${prefix}quizwell/privacy/">Privacy Policy</a>
+              <a href="${prefix}quizwell/terms/">Terms of Use</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
