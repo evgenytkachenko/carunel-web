@@ -53,11 +53,11 @@
     header.setAttribute('role', 'banner');
     header.innerHTML = `
       <div class="site-header__inner">
-        <a href="${prefix}index.html" class="site-header__logo">
+        <a href="${prefix || '/'}" class="site-header__logo">
             <img src="${prefix}assets/images/carunel-logo-transparent.png" alt="Carunel Studio" class="site-header__logo-img">
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix}index.html" class="site-nav__link${active('home')}">Studio</a>
+          <a href="${prefix || '/'}" class="site-nav__link${active('home')}">Studio</a>
           <a href="${prefix}about.html" class="site-nav__link${active('about')}">About</a>
           <a href="${prefix}products.html" class="site-nav__link${active('products')}">Products</a>
           <a href="${prefix}contact.html" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
@@ -125,19 +125,19 @@
             </div>
             <div class="site-footer__link-group">
               <h4>Beadwell</h4>
-              <a href="${prefix}beadwell/index.html">Product</a>
+              <a href="${prefix}beadwell/">Product</a>
               <a href="${prefix}beadwell/privacy/">Privacy Policy</a>
               <a href="${prefix}beadwell/terms/">Terms of Use</a>
             </div>
             <div class="site-footer__link-group">
               <h4>GentleClover</h4>
-              <a href="${prefix}gentleclover/index.html">Product</a>
+              <a href="${prefix}gentleclover/">Product</a>
               <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
               <a href="${prefix}gentleclover/terms/">Terms of Use</a>
             </div>
             <div class="site-footer__link-group">
               <h4>QuizWell</h4>
-              <a href="${prefix}quizwell/index.html">Product</a>
+              <a href="${prefix}quizwell/">Product</a>
               <a href="${prefix}quizwell/privacy/">Privacy Policy</a>
               <a href="${prefix}quizwell/terms/">Terms of Use</a>
             </div>
