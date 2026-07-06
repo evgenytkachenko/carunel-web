@@ -10,7 +10,7 @@
   // Works for any nesting depth: /, /beadwell/, /gentleclover/privacy/, etc.
   function rootPrefix() {
     const path = window.location.pathname;
-    const products = ['beadwell', 'gentleclover', 'quizwell'];
+    const products = ['beadwell-words', 'beadwell', 'gentleclover', 'quizwell'];
     for (const p of products) {
       const idx = path.indexOf('/' + p + '/');
       if (idx !== -1) {
@@ -128,6 +128,11 @@
               <a href="${prefix}beadwell/">Product</a>
               <a href="${prefix}beadwell/privacy/">Privacy Policy</a>
               <a href="${prefix}beadwell/terms/">Terms of Use</a>
+            </div>
+            <div class="site-footer__link-group">
+              <h4>Beadwell Words</h4>
+              <a href="${prefix}beadwell-words/privacy/">Privacy Policy</a>
+              <a href="${prefix}beadwell-words/terms/">Terms of Use</a>
             </div>
             <div class="site-footer__link-group">
               <h4>GentleClover</h4>
