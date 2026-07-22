@@ -44,7 +44,7 @@
       width: 170px;
       filter: drop-shadow(var(--shadow-lg));
     }
-    .hero__brand-mark img {
+    .hero__brand-mark svg {
       width: 100%;
       height: auto;
       display: block;
@@ -86,6 +86,14 @@
       .hero__visual-stack .decor-circle--behind { width: 260px; height: 260px; }
       .hero__visual-stack .decor-bead { display: none; }
       .hero-signals { justify-content: center; }
+      .hero-break { display: none; }
+    }
+    .hero-cta {
+      padding: 1rem 2.1rem;
+    }
+    @media (min-width: 769px) {
+      .hero__content { grid-template-columns: 1.4fr 1fr; }
+      .hero__text { max-width: var(--max-width-text); }
     }
   </style>
 
@@ -98,10 +106,10 @@
       <div class="hero__content">
         <div class="hero__text">
           <span class="label-mono">Carunel Studio</span>
-          <h1 style="margin-top: var(--space-sm);">Thoughtful digital products for children and families.</h1>
+          <h1 style="margin-top: var(--space-sm);">Thoughtful digital<br class="hero-break"> products for children<br class="hero-break"> and families.</h1>
           <p>Carunel Studio creates calm, privacy-conscious experiences designed with warmth, clarity, and care.</p>
           <div class="btn-group">
-            <a href="products.html" class="btn btn--primary">Meet our apps</a>
+            <a href="products.html" class="btn btn--primary hero-cta">Explore our apps</a>
           </div>
           <div class="hero-signals">
             <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Offline-first</span>
@@ -116,7 +124,15 @@
             <div class="decor-bead" style="width: 12px; height: 12px; background-color: var(--accent-sage); bottom: 16%; left: 4%; opacity: 0.2;"></div>
             <div class="decor-bead" style="width: 10px; height: 10px; background-color: var(--accent-terracotta); top: 60%; right: 2%; opacity: 0.15;"></div>
             <div class="hero__brand-mark">
-              <img src="assets/images/carunel-symbol-transparent.png" alt="Carunel Studio symbol">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 145" fill="none" role="img" aria-label="Carunel Studio symbol">
+                <g transform="translate(18, 10)">
+                  <ellipse cx="38" cy="88" rx="26" ry="34" transform="rotate(-8 38 88)" fill="#A68468"/>
+                  <ellipse cx="34" cy="82" rx="14" ry="20" transform="rotate(-8 34 82)" fill="#B89578" opacity="0.6"/>
+                  <path d="M44 58 C47 42 52 28 56 16" stroke="#8B9E6B" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <path d="M56 16 C44 6 34 14 42 28 C48 22 54 18 56 16Z" fill="#8B9E6B"/>
+                  <path d="M56 16 C68 6 78 14 68 28 C62 22 58 18 56 16Z" fill="#A0B280"/>
+                </g>
+              </svg>
             </div>
           </div>
         </div>
