@@ -38,6 +38,20 @@
       position: relative;
       z-index: 1;
     }
+    .hero__brand-mark {
+      position: relative;
+      z-index: 1;
+      width: 200px;
+      filter: drop-shadow(var(--shadow-lg));
+    }
+    .hero__brand-mark svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .hero__brand-mark { width: 150px; }
+    }
     .hero__visual-stack .decor-bead {
       position: absolute;
       border-radius: 50%;
@@ -101,10 +115,14 @@
             <div class="decor-bead" style="width: 18px; height: 18px; background-color: var(--accent-gold); top: 12%; right: 6%; opacity: 0.25;"></div>
             <div class="decor-bead" style="width: 12px; height: 12px; background-color: var(--accent-sage); bottom: 16%; left: 4%; opacity: 0.2;"></div>
             <div class="decor-bead" style="width: 10px; height: 10px; background-color: var(--accent-terracotta); top: 60%; right: 2%; opacity: 0.15;"></div>
-            <div class="device-frame" style="max-width: 520px; padding: 18px;">
-              <div class="device-frame__screen">
-                <img src="assets/images/beadwell-splash.png" alt="Beadwell — Calm math practice for kids ages 5–9">
-              </div>
+            <div class="hero__brand-mark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Carunel Studio symbol">
+                <ellipse cx="24" cy="42" rx="14" ry="18" transform="rotate(-10 24 42)" fill="#A07B5A"/>
+                <ellipse cx="24" cy="42" rx="10" ry="14" transform="rotate(-10 24 42)" fill="#B08C6A" opacity="0.5"/>
+                <path d="M28 30 C30 22 32 16 34 12" stroke="#8B9E6B" stroke-width="3" stroke-linecap="round" fill="none"/>
+                <path d="M34 12 C28 8 24 12 28 18" fill="#8B9E6B"/>
+                <path d="M34 12 C40 8 44 12 38 18" fill="#A0B280"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -164,7 +182,7 @@
           </div>
         </div>
         <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-terracotta);">01 / Our apps — Ages 5–9</span>
+          <span class="label-mono" style="color: var(--accent-terracotta);">Our apps — Ages 5–9</span>
           <h2 style="margin-top: var(--space-sm);">Meet Beadwell</h2>
           <div class="divider"></div>
           <p style="line-height: 1.8;">Calm math practice for children ages 5 to 9. Short sessions, gentle feedback, and quiet parent insight — all offline, all on your device.</p>
@@ -176,32 +194,8 @@
     </div>
   </section>
 
-  <!-- Featured Product: QuizWell -->
-  <section class="section section--cream">
-    <div class="container">
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-row__visual reveal">
-          <div class="device-frame device-frame--lg">
-            <div class="device-frame__screen">
-              <img src="assets/images/quizwell-home_page.png" alt="QuizWell — calm math quiz practice for kids" loading="lazy">
-            </div>
-          </div>
-        </div>
-        <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-sage);">02 / Our apps — Ages 5–10</span>
-          <h2 style="margin-top: var(--space-sm);">Meet QuizWell</h2>
-          <div class="divider"></div>
-          <p style="line-height: 1.8;">Calm, parent-guided math quiz practice for children ages 5 to 10. Short focused sessions, personal encouragement from parents, and quiet results — all offline, all on your device.</p>
-          <div class="mt-lg">
-            <a href="quizwell/" class="btn btn--sage">Explore QuizWell</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Featured Product: GentleClover -->
-  <section class="section">
+  <section class="section section--cream">
     <div class="container">
       <div class="feature-row feature-row--reverse">
         <div class="feature-row__visual reveal">
@@ -212,12 +206,36 @@
           </div>
         </div>
         <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-gold);">03 / Our apps — Ages 3+</span>
+          <span class="label-mono" style="color: var(--accent-sage);">Our apps — Ages 3+</span>
           <h2 style="margin-top: var(--space-sm);">Meet GentleClover</h2>
           <div class="divider"></div>
           <p style="line-height: 1.8;">Calm, offline activities for children ages 3 and up. Matching, puzzles, creative building, and travel-themed exploration &mdash; no ads, no accounts, no tracking. Paid once, everything included.</p>
           <div class="mt-lg">
             <a href="gentleclover/" class="btn btn--sage">Explore GentleClover</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Product: QuizWell -->
+  <section class="section">
+    <div class="container">
+      <div class="feature-row feature-row--reverse">
+        <div class="feature-row__visual reveal">
+          <div class="device-frame device-frame--lg">
+            <div class="device-frame__screen">
+              <img src="assets/images/quizwell-home_page.png" alt="QuizWell — calm math quiz practice for kids" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="feature-row__text reveal">
+          <span class="label-mono" style="color: var(--accent-gold);">Our apps — Ages 5–10</span>
+          <h2 style="margin-top: var(--space-sm);">Meet QuizWell</h2>
+          <div class="divider"></div>
+          <p style="line-height: 1.8;">Calm, parent-guided math quiz practice for children ages 5 to 10. Short focused sessions, personal encouragement from parents, and quiet results — all offline, all on your device.</p>
+          <div class="mt-lg">
+            <a href="quizwell/" class="btn btn--sage">Explore QuizWell</a>
           </div>
         </div>
       </div>
