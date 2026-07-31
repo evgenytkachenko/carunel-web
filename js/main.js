@@ -6,37 +6,24 @@
   'use strict';
 
   /* --- Path helper --- */
-  // Compute the relative prefix from the current page to the site root.
-  // Works for any nesting depth: /, /beadwell/, /gentleclover/privacy/, etc.
+  // Compute the relative prefix from the current page to the site root,
+  // based on directory depth. Works for any nesting: /, /about/, /beadwell/privacy/, etc.
   function rootPrefix() {
     const path = window.location.pathname;
-    const products = ['beadwell-words', 'beadwell', 'gentleclover', 'quizwell'];
-    for (const p of products) {
-      const idx = path.indexOf('/' + p + '/');
-      if (idx !== -1) {
-        // Count slashes after the product directory start
-        const after = path.substring(idx + p.length + 2);
-        const depth = (after.match(/\//g) || []).length + 1;
-        return '../'.repeat(depth);
-      }
-    }
-    return '';
+    const dir = path.replace(/[^/]*$/, ''); // strip trailing filename, if any
+    const depth = (dir.match(/\//g) || []).length - 1;
+    return depth > 0 ? '../'.repeat(depth) : '';
   }
 
   /* --- Determine current page for nav active state --- */
   function currentPage() {
-    const path = window.location.pathname;
-    if (path.endsWith('/') || path.endsWith('/index.html')) {
-      if (path.includes('/beadwell')) return 'beadwell';
-      if (path.includes('/gentleclover')) return 'gentleclover';
-      if (path.includes('/quizwell')) return 'quizwell';
-      return 'home';
-    }
+    const path = window.location.pathname.replace(/index\.html$/, '');
+    if (path === '/' || path === '') return 'home';
+    if (path.includes('/beadwell')) return 'beadwell';
+    if (path.includes('/gentleclover')) return 'gentleclover';
+    if (path.includes('/quizwell')) return 'quizwell';
     if (path.includes('/about')) return 'about';
     if (path.includes('/products')) return 'products';
-    if (path.includes('/beadwell')) return 'products';
-    if (path.includes('/gentleclover')) return 'products';
-    if (path.includes('/quizwell')) return 'products';
     if (path.includes('/contact')) return 'contact';
     return 'home';
   }
@@ -58,9 +45,9 @@
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
           <a href="${prefix || '/'}" class="site-nav__link${active('home')}">Studio</a>
-          <a href="${prefix}about.html" class="site-nav__link${active('about')}">About</a>
-          <a href="${prefix}products.html" class="site-nav__link${active('products')}">Products</a>
-          <a href="${prefix}contact.html" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
+          <a href="${prefix}about/" class="site-nav__link${active('about')}">About</a>
+          <a href="${prefix}products/" class="site-nav__link${active('products')}">Products</a>
+          <a href="${prefix}contact/" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span class="nav-toggle__bar"></span>
@@ -120,8 +107,8 @@
           <div class="site-footer__links">
             <div class="site-footer__link-group">
               <h4>Studio</h4>
-              <a href="${prefix}about.html">About</a>
-              <a href="${prefix}contact.html">Contact</a>
+              <a href="${prefix}about/">About</a>
+              <a href="${prefix}contact/">Contact</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Beadwell</h4>
