@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="assets/images/carunel-symbol-transparent.png" type="image/png">
+  <link rel="icon" href="assets/images/carunel-favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/carunel-favicon-180.png">
 </head>
 <body>
   <!-- Header and footer injected by main.js -->
@@ -52,12 +53,6 @@
     @media (max-width: 768px) {
       .hero__brand-mark { width: 120px; }
     }
-    .hero__visual-stack .decor-bead {
-      position: absolute;
-      border-radius: 50%;
-      z-index: 0;
-      opacity: 0.35;
-    }
     .hero-signals {
       display: flex;
       gap: var(--space-md);
@@ -84,7 +79,6 @@
     .hero-signal__dot--blue { background-color: var(--accent-blue); opacity: 0.7; }
     @media (max-width: 768px) {
       .hero__visual-stack .decor-circle--behind { width: 260px; height: 260px; }
-      .hero__visual-stack .decor-bead { display: none; }
       .hero-signals { justify-content: center; }
       .hero-break { display: none; }
     }
@@ -120,11 +114,8 @@
         <div class="hero__visual">
           <div class="hero__visual-stack">
             <div class="decor-circle--behind"></div>
-            <div class="decor-bead" style="width: 18px; height: 18px; background-color: var(--accent-gold); top: 12%; right: 6%; opacity: 0.25;"></div>
-            <div class="decor-bead" style="width: 12px; height: 12px; background-color: var(--accent-sage); bottom: 16%; left: 4%; opacity: 0.2;"></div>
-            <div class="decor-bead" style="width: 10px; height: 10px; background-color: var(--accent-terracotta); top: 60%; right: 2%; opacity: 0.15;"></div>
             <div class="hero__brand-mark">
-              <img src="assets/images/carunel-symbol-transparent-lg.png" alt="Carunel Studio symbol">
+              <img src="assets/images/carunel-symbol.svg" alt="Carunel Studio symbol">
             </div>
           </div>
         </div>
