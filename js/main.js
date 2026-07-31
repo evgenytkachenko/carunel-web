@@ -130,11 +130,6 @@
               <a href="${prefix}beadwell/terms/">Terms of Use</a>
             </div>
             <div class="site-footer__link-group">
-              <h4>Beadwell Words</h4>
-              <a href="${prefix}beadwell-words/privacy/">Privacy Policy</a>
-              <a href="${prefix}beadwell-words/terms/">Terms of Use</a>
-            </div>
-            <div class="site-footer__link-group">
               <h4>GentleClover</h4>
               <a href="${prefix}gentleclover/">Product</a>
               <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
