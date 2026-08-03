@@ -5,22 +5,25 @@
 (function () {
   'use strict';
 
-  /* --- Shared Product Data: App Store / Google Play links --- */
+  /* --- Shared Product Data: App Store / Google Play / Amazon Appstore links --- */
   const STORE_LINKS = {
     beadwell: {
       name: 'Beadwell Math',
       appleUrl: 'https://apps.apple.com/us/app/beadwell-math/id6792008438',
-      googleUrl: 'https://play.google.com/store/apps/details?id=com.beadwell.app'
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.beadwell.app',
+      amazonUrl: 'https://www.amazon.com/Beadwell-Calm-Math-Practice-Kids/dp/B0GX2WK9W5'
     },
     quizwell: {
       name: 'QuizWell Math',
       appleUrl: 'https://apps.apple.com/us/app/quizwell-math/id6791330334',
-      googleUrl: 'https://play.google.com/store/apps/details?id=com.quizwellapp.quizwell'
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.quizwellapp.quizwell',
+      amazonUrl: 'https://www.amazon.com/QuizWell-Math-Quiz-Practice-Kids/dp/B0H3XDMRN3'
     },
     gentleclover: {
       name: 'GentleClover',
       appleUrl: 'https://apps.apple.com/us/app/gentleclover/id6792042143',
-      googleUrl: 'https://play.google.com/store/apps/details?id=com.carunel.gentleclover'
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.carunel.gentleclover',
+      amazonUrl: 'https://www.amazon.com/gp/product/B0GXWG526B'
     }
   };
 
@@ -164,12 +167,15 @@
   }
 
   /* --- StoreBadges Component --- */
-  // Renders official App Store / Google Play badges for a product.
+  // Renders official App Store / Google Play / Amazon Appstore badges for a product.
   // Usage: <div data-store-badges="beadwell" data-variant="compact"></div>
+  // Compact variant (homepage cards) shows Apple + Google only, to avoid
+  // crowding the card; product pages (default variant) show every store the app is on.
   function renderStoreBadges(product, prefix, variant) {
-    if (!product || (!product.appleUrl && !product.googleUrl)) return '';
+    if (!product || (!product.appleUrl && !product.googleUrl && !product.amazonUrl)) return '';
 
-    const variantClass = variant === 'compact' ? ' store-badges--compact' : '';
+    const compact = variant === 'compact';
+    const variantClass = compact ? ' store-badges--compact' : '';
     let html = `<div class="store-badges${variantClass}">`;
 
     if (product.appleUrl) {
@@ -182,6 +188,12 @@
       html += `
         <a href="${product.googleUrl}" class="store-badge store-badge--google" target="_blank" rel="noopener noreferrer" aria-label="Get ${product.name} on Google Play">
           <img src="${prefix}assets/images/badges/google-play-badge.png" alt="" loading="lazy">
+        </a>`;
+    }
+    if (product.amazonUrl && !compact) {
+      html += `
+        <a href="${product.amazonUrl}" class="store-badge store-badge--amazon" target="_blank" rel="noopener noreferrer" aria-label="Get ${product.name} from the Amazon Appstore">
+          <img src="${prefix}assets/images/badges/amazon-appstore-badge.png" alt="" loading="lazy">
         </a>`;
     }
 
