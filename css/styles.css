@@ -1096,6 +1096,51 @@ p {
   height: 16px;
 }
 
+/* --- StoreBadges --- */
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.store-badge:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
+}
+
+.store-badge img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.store-badges--compact {
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.store-badges--compact .store-badge img {
+  height: 34px;
+}
+
+@media (max-width: 480px) {
+  .store-badge img {
+    height: 40px;
+  }
+  .store-badges--compact .store-badge img {
+    height: 32px;
+  }
+}
+
 /* --- Mono label --- */
 .label-mono {
   font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;

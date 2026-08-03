@@ -5,6 +5,25 @@
 (function () {
   'use strict';
 
+  /* --- Shared Product Data: App Store / Google Play links --- */
+  const STORE_LINKS = {
+    beadwell: {
+      name: 'Beadwell Math',
+      appleUrl: 'https://apps.apple.com/us/app/beadwell-math/id6792008438',
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.beadwell.app'
+    },
+    quizwell: {
+      name: 'QuizWell Math',
+      appleUrl: 'https://apps.apple.com/us/app/quizwell-math/id6791330334',
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.quizwellapp.quizwell'
+    },
+    gentleclover: {
+      name: 'GentleClover',
+      appleUrl: 'https://apps.apple.com/us/app/gentleclover/id6792042143',
+      googleUrl: 'https://play.google.com/store/apps/details?id=com.carunel.gentleclover'
+    }
+  };
+
   /* --- Path helper --- */
   // Compute the relative prefix from the current page to the site root,
   // based on directory depth. Works for any nesting: /, /about/, /beadwell/privacy/, etc.
@@ -144,6 +163,41 @@
     document.body.appendChild(footer);
   }
 
+  /* --- StoreBadges Component --- */
+  // Renders official App Store / Google Play badges for a product.
+  // Usage: <div data-store-badges="beadwell" data-variant="compact"></div>
+  function renderStoreBadges(product, prefix, variant) {
+    if (!product || (!product.appleUrl && !product.googleUrl)) return '';
+
+    const variantClass = variant === 'compact' ? ' store-badges--compact' : '';
+    let html = `<div class="store-badges${variantClass}">`;
+
+    if (product.appleUrl) {
+      html += `
+        <a href="${product.appleUrl}" class="store-badge store-badge--apple" target="_blank" rel="noopener noreferrer" aria-label="Download ${product.name} on the App Store">
+          <img src="${prefix}assets/images/badges/app-store-badge.svg" alt="" loading="lazy">
+        </a>`;
+    }
+    if (product.googleUrl) {
+      html += `
+        <a href="${product.googleUrl}" class="store-badge store-badge--google" target="_blank" rel="noopener noreferrer" aria-label="Get ${product.name} on Google Play">
+          <img src="${prefix}assets/images/badges/google-play-badge.png" alt="" loading="lazy">
+        </a>`;
+    }
+
+    html += `</div>`;
+    return html;
+  }
+
+  function initStoreBadges() {
+    const prefix = rootPrefix();
+    document.querySelectorAll('[data-store-badges]').forEach((mount) => {
+      const product = STORE_LINKS[mount.getAttribute('data-store-badges')];
+      const variant = mount.getAttribute('data-variant') || 'default';
+      mount.outerHTML = renderStoreBadges(product, prefix, variant);
+    });
+  }
+
   /* --- Scroll Reveal --- */
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
@@ -168,6 +222,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     renderHeader();
     renderFooter();
+    initStoreBadges();
     initReveal();
   });
 })();
