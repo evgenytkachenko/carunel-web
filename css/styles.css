@@ -558,7 +558,7 @@ p {
 
 /* --- Section Layouts --- */
 .hero {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(72px + var(--space-3xl) * 0.4);
   padding-bottom: var(--space-3xl);
   position: relative;
   overflow: hidden;
