@@ -558,7 +558,7 @@ p {
 
 /* --- Section Layouts --- */
 .hero {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(72px + var(--space-3xl) * 0.4);
   padding-bottom: var(--space-3xl);
   position: relative;
   overflow: hidden;
@@ -1132,6 +1132,10 @@ p {
   height: 34px;
 }
 
+.store-badges--cta .store-badge img {
+  height: 38px;
+}
+
 @media (max-width: 480px) {
   .store-badge img {
     height: 40px;
@@ -1139,6 +1143,31 @@ p {
   .store-badges--compact .store-badge img {
     height: 32px;
   }
+  .store-badges--cta .store-badge img {
+    height: 34px;
+  }
+}
+
+/* --- Download CTA --- */
+.download-cta {
+  text-align: center;
+}
+
+.download-cta__inner {
+  margin: 0 auto;
+}
+
+.download-cta__heading {
+  margin-bottom: var(--space-xs);
+}
+
+.download-cta__text {
+  margin: 0 auto var(--space-lg);
+}
+
+.download-cta .store-badges {
+  justify-content: center;
+  margin-top: 0;
 }
 
 /* --- Mono label --- */

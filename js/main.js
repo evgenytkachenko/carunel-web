@@ -9,18 +9,21 @@
   const STORE_LINKS = {
     beadwell: {
       name: 'Beadwell Math',
+      displayName: 'Beadwell',
       appleUrl: 'https://apps.apple.com/us/app/beadwell-math/id6792008438',
       googleUrl: 'https://play.google.com/store/apps/details?id=com.beadwell.app',
       amazonUrl: 'https://www.amazon.com/Beadwell-Calm-Math-Practice-Kids/dp/B0GX2WK9W5'
     },
     quizwell: {
       name: 'QuizWell Math',
+      displayName: 'QuizWell',
       appleUrl: 'https://apps.apple.com/us/app/quizwell-math/id6791330334',
       googleUrl: 'https://play.google.com/store/apps/details?id=com.quizwellapp.quizwell',
       amazonUrl: 'https://www.amazon.com/QuizWell-Math-Quiz-Practice-Kids/dp/B0H3XDMRN3'
     },
     gentleclover: {
       name: 'GentleClover',
+      displayName: 'GentleClover',
       appleUrl: 'https://apps.apple.com/us/app/gentleclover/id6792042143',
       googleUrl: 'https://play.google.com/store/apps/details?id=com.carunel.gentleclover',
       amazonUrl: 'https://www.amazon.com/gp/product/B0GXWG526B'
@@ -170,12 +173,13 @@
   // Renders official App Store / Google Play / Amazon Appstore badges for a product.
   // Usage: <div data-store-badges="beadwell" data-variant="compact"></div>
   // Compact variant (homepage cards) shows Apple + Google only, to avoid
-  // crowding the card; product pages (default variant) show every store the app is on.
+  // crowding the card; product pages (default variant) show every store the app is on;
+  // cta variant (bottom-of-page download CTA) shows every store too, at a smaller size.
   function renderStoreBadges(product, prefix, variant) {
     if (!product || (!product.appleUrl && !product.googleUrl && !product.amazonUrl)) return '';
 
     const compact = variant === 'compact';
-    const variantClass = compact ? ' store-badges--compact' : '';
+    const variantClass = compact ? ' store-badges--compact' : (variant === 'cta' ? ' store-badges--cta' : '');
     let html = `<div class="store-badges${variantClass}">`;
 
     if (product.appleUrl) {
@@ -210,6 +214,33 @@
     });
   }
 
+  /* --- DownloadCta Component --- */
+  // Final "get the app" section for product pages, placed just above the footer.
+  // Usage: <section class="section--sm section--sand download-cta"
+  //           data-download-cta="beadwell" data-tagline="One short sentence."></section>
+  // Reuses the same STORE_LINKS entry (and therefore the same URLs, badge assets,
+  // and accessible labels) as the product's hero badges — just rendered smaller.
+  function renderDownloadCta(product, prefix, tagline) {
+    const badges = renderStoreBadges(product, prefix, 'cta');
+    if (!badges) return '';
+    return `
+      <div class="container container--narrow download-cta__inner">
+        <h2 class="download-cta__heading">Ready to try ${product.displayName}?</h2>
+        <p class="download-cta__text">${tagline}</p>
+        ${badges}
+      </div>
+    `;
+  }
+
+  function initDownloadCta() {
+    const prefix = rootPrefix();
+    document.querySelectorAll('[data-download-cta]').forEach((mount) => {
+      const product = STORE_LINKS[mount.getAttribute('data-download-cta')];
+      const tagline = mount.getAttribute('data-tagline') || '';
+      mount.innerHTML = product ? renderDownloadCta(product, prefix, tagline) : '';
+    });
+  }
+
   /* --- Scroll Reveal --- */
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
@@ -233,6 +264,7 @@
   /* --- Init --- */
   document.addEventListener('DOMContentLoaded', () => {
     renderHeader();
+    initDownloadCta();
     renderFooter();
     initStoreBadges();
     initReveal();
