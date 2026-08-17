@@ -125,9 +125,9 @@
             <span class="site-header__logo-text">Carunel</span>
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix}products/" class="site-nav__link${active('products')}">Apps</a>
           <a href="${prefix}organizations/" class="site-nav__link${active('organizations')}">For Organizations</a>
-          <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}">Books &amp; Media</a>
+          <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}">Books &amp; Frameworks</a>
+          <a href="${prefix}products/" class="site-nav__link${active('products')}">Learning Apps</a>
           <a href="${prefix}about/" class="site-nav__link${active('about')}">About</a>
           <a href="${prefix}contact/" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
         </nav>
@@ -187,21 +187,9 @@
               <img src="${prefix}assets/images/carunel-symbol.svg" alt="" class="site-footer__logo-icon">
               <span class="site-footer__logo-text">Carunel</span>
             </div>
-            <p class="site-footer__tagline">Thoughtful learning products, practical frameworks, organizational services, and educational media.</p>
+            <p class="site-footer__tagline">Quality Engineering consulting, practical frameworks, professional books, and thoughtful learning products.</p>
           </div>
           <div class="site-footer__links">
-            <div class="site-footer__link-group">
-              <h4>Carunel</h4>
-              <a href="${prefix}about/">About</a>
-              <a href="${prefix}contact/">Contact</a>
-            </div>
-            <div class="site-footer__link-group">
-              <h4>Learning Apps</h4>
-              <a href="${prefix}beadwell/">Beadwell</a>
-              <a href="${prefix}gentleclover/">GentleClover</a>
-              <a href="${prefix}quizwell/">QuizWell</a>
-              <a href="${prefix}products/">All Apps</a>
-            </div>
             <div class="site-footer__link-group">
               <h4>For Organizations</h4>
               <a href="${prefix}organizations/">Carunel overview</a>
@@ -209,10 +197,23 @@
               <a href="${SITE.hyperAgile.consulting}" target="_blank" rel="noopener noreferrer">Consulting</a>
             </div>
             <div class="site-footer__link-group">
-              <h4>Books &amp; Media</h4>
-              <a href="${prefix}books-media/">All Books &amp; Media</a>
+              <h4>Books &amp; Frameworks</h4>
+              <a href="${prefix}books-media/">All Books</a>
               <a href="${SITE.hyperAgile.book}" target="_blank" rel="noopener noreferrer">Hyper-Agile Testing</a>
+              <a href="${SITE.hyperAgile.home}" target="_blank" rel="noopener noreferrer">Hyper-Agile Quality Engineering&trade;</a>
               <a href="${prefix}books-media/#media">Media &amp; Shows</a>
+            </div>
+            <div class="site-footer__link-group">
+              <h4>Learning Apps</h4>
+              <a href="${prefix}products/">All Learning Apps</a>
+              <a href="${prefix}beadwell/">Beadwell</a>
+              <a href="${prefix}gentleclover/">GentleClover</a>
+              <a href="${prefix}quizwell/">QuizWell</a>
+            </div>
+            <div class="site-footer__link-group">
+              <h4>Carunel</h4>
+              <a href="${prefix}about/">About</a>
+              <a href="${prefix}contact/">Contact</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
@@ -397,6 +398,13 @@
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
     if (!els.length) return;
+
+    // Content must never stay permanently hidden if IntersectionObserver
+    // isn't supported — reveal everything immediately as a safe fallback.
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('revealed'));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

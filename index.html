@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carunel | Educational Products, Professional Learning &amp; Media</title>
-  <meta name="description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
+  <title>Carunel | Quality Engineering Consulting, Books &amp; Learning Apps</title>
+  <meta name="description" content="Carunel helps organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, books, and professional learning.">
   <link rel="canonical" href="https://carunel.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Carunel">
   <meta property="og:url" content="https://carunel.com/">
-  <meta property="og:title" content="Carunel | Educational Products, Professional Learning & Media">
-  <meta property="og:description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
+  <meta property="og:title" content="Carunel | Quality Engineering Consulting, Books & Learning Apps">
+  <meta property="og:description" content="Carunel helps organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, books, and professional learning.">
   <meta property="og:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Carunel | Educational Products, Professional Learning & Media">
-  <meta name="twitter:description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
+  <meta name="twitter:title" content="Carunel | Quality Engineering Consulting, Books & Learning Apps">
+  <meta name="twitter:description" content="Carunel helps organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, books, and professional learning.">
   <meta name="twitter:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,7 +130,38 @@
     .work-card__link--terracotta { color: var(--accent-terracotta); }
     .work-card__link--charcoal { color: var(--text-primary); }
     .work-card__link--gold { color: var(--accent-gold); }
-    .work-card__link--media { color: var(--accent-media); }
+    /* Compact Learning Apps row */
+    .app-mini-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+      margin: var(--space-xl) 0;
+    }
+    .app-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      text-decoration: none;
+      transition: transform var(--transition-fast);
+    }
+    .app-mini:hover {
+      transform: translateY(-3px);
+    }
+    .app-mini__icon {
+      width: 76px;
+      height: 76px;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      box-shadow: var(--shadow-sm);
+      display: block;
+    }
+    .app-mini__name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
   </style>
 
   <!-- Hero -->
@@ -141,12 +172,12 @@
     <div class="container">
       <div class="hero__content">
         <div class="hero__text">
-          <span class="label-mono">Carunel</span>
-          <h1 style="margin-top: var(--space-sm);">Thoughtful ways to learn,<br class="hero-break"> explore, and build with<br class="hero-break"> confidence.</h1>
-          <p>Carunel creates educational apps, practical frameworks, organizational learning experiences, and media that help people ask better questions, understand how things work, and put knowledge into practice.</p>
+          <span class="label-mono">Quality Engineering for AI-Accelerated Delivery</span>
+          <h1 style="margin-top: var(--space-sm);">Build confidence as fast<br class="hero-break"> as your teams create<br class="hero-break"> change.</h1>
+          <p>Carunel helps software organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, and professional education.</p>
           <div class="btn-group">
-            <a href="#what-we-do" class="btn btn--primary hero-cta">Explore Our Work</a>
-            <a href="organizations/" class="btn btn--secondary hero-cta">For Organizations</a>
+            <a href="organizations/" class="btn btn--primary hero-cta">For Organizations</a>
+            <a href="books-media/" class="btn btn--secondary hero-cta">Explore Books &amp; Frameworks</a>
           </div>
           <div class="hero-signals">
             <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Curiosity-led</span>
@@ -170,11 +201,16 @@
   <section id="what-we-do" class="section--sm section--cream" style="padding: var(--space-xl) 0;">
     <div class="container">
       <div class="section-header reveal">
-        <h2>One company. Several ways to learn.</h2>
+        <h2>One company. Three ways to build confidence.</h2>
         <div class="divider divider--center"></div>
-        <p>Our work serves different audiences, but it shares one purpose: making learning engaging, meaningful, trustworthy, and useful in practice.</p>
+        <p>Our work serves different audiences&mdash;organizations, professionals, and families&mdash;but it shares one purpose: turning expertise into practical, trustworthy confidence.</p>
       </div>
-      <div class="grid grid--4 reveal-stagger">
+      <div class="grid grid--3 reveal-stagger">
+        <div class="card work-card reveal">
+          <h3 class="card__title">Consulting &amp; Professional Learning</h3>
+          <p class="work-card__text">Quality Engineering consulting, organizational assessments, implementation support, workshops, and training for leaders and cross-functional teams.</p>
+          <a href="organizations/" class="work-card__link work-card__link--charcoal">For Organizations &rarr;</a>
+        </div>
         <div class="card work-card reveal">
           <h3 class="card__title">Books &amp; Frameworks</h3>
           <p class="work-card__text">Practical ideas for professionals navigating Quality Engineering, AI-assisted delivery, risk, and release confidence.</p>
@@ -183,167 +219,120 @@
         <div class="card work-card reveal">
           <h3 class="card__title">Learning Apps</h3>
           <p class="work-card__text">Calm, privacy-conscious educational products designed for children and families.</p>
-          <a href="products/" class="work-card__link work-card__link--terracotta">Explore Our Apps &rarr;</a>
-        </div>
-        <div class="card work-card reveal">
-          <h3 class="card__title">Professional Learning &amp; Consulting</h3>
-          <p class="work-card__text">Frameworks, organizational assessments, implementation support, workshops, and training that help leaders and teams strengthen how they build confidence in software delivery.</p>
-          <a href="organizations/" class="work-card__link work-card__link--charcoal">For Organizations &rarr;</a>
-        </div>
-        <div class="card work-card reveal">
-          <h3 class="card__title">Media &amp; Shows</h3>
-          <p class="work-card__text">Educational stories, experiments, and programs that make the thinking behind trusted products and systems visible.</p>
-          <a href="books-media/#media" class="work-card__link work-card__link--media">Explore Media &rarr;</a>
+          <a href="products/" class="work-card__link work-card__link--terracotta">Explore Learning Apps &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Curiosity Statement -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Learning begins with curiosity.</h2>
-        <div class="divider divider--center"></div>
-        <p>Carunel began by creating calm, privacy-conscious learning products for children and families. Today, that same belief in curiosity, clarity, and thoughtful design extends into books, professional frameworks, organizational learning, consulting, and educational media.</p>
-        <p class="mt-md">Whether a child is discovering mathematics, a professional is learning how to build more reliable technology, or a family is exploring the hidden thinking behind an everyday product, our goal remains the same: help people ask better questions, test ideas, and understand how the world around them works.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Learning Apps Intro -->
-  <section class="section--sm section--cream" style="padding-bottom: 0;">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label-mono">Learning products</span>
-        <h2 style="margin-top: var(--space-sm);">Calm educational apps for children and families.</h2>
-        <div class="divider divider--center"></div>
-        <p>Our apps are designed around clarity, privacy, honest presentation, and respect for children's attention. They work without ads, accounts, or unnecessary data collection.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Product: Beadwell -->
-  <section class="section section--cream">
-    <div class="container">
-      <div class="feature-row">
-        <div class="feature-row__visual reveal">
-          <div class="device-frame device-frame--lg">
-            <div class="device-frame__screen">
-              <img src="assets/images/beadwell-menu.png" alt="Beadwell main menu — Practice, Choose Your Work, Special Work, My Bead, My Learning" loading="lazy">
-            </div>
-          </div>
-        </div>
-        <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-terracotta);">Our apps — Ages 5–9</span>
-          <h2 style="margin-top: var(--space-sm);">Meet Beadwell</h2>
-          <div class="divider"></div>
-          <p style="line-height: 1.8;">Calm math practice for children ages 5 to 9. Short sessions, gentle feedback, and quiet parent insight — all offline, all on your device.</p>
-          <div class="mt-lg">
-            <a href="beadwell/" class="btn btn--primary">Explore Beadwell</a>
-          </div>
-          <div data-store-badges="beadwell" data-variant="compact"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Product: GentleClover -->
-  <section class="section">
-    <div class="container">
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-row__visual reveal">
-          <div class="device-frame device-frame--lg">
-            <div class="device-frame__screen">
-              <img src="assets/images/gc-home.png" alt="GentleClover — Play, Puzzles, Create, Travel" loading="lazy">
-            </div>
-          </div>
-        </div>
-        <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-sage);">Our apps — Ages 3+</span>
-          <h2 style="margin-top: var(--space-sm);">Meet GentleClover</h2>
-          <div class="divider"></div>
-          <p style="line-height: 1.8;">Calm, offline activities for children ages 3 and up. Matching, puzzles, creative building, and travel-themed exploration &mdash; no ads, no accounts, no tracking. Paid once, everything included.</p>
-          <div class="mt-lg">
-            <a href="gentleclover/" class="btn btn--sage">Explore GentleClover</a>
-          </div>
-          <div data-store-badges="gentleclover" data-variant="compact"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Product: QuizWell -->
-  <section class="section section--cream">
-    <div class="container">
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-row__visual reveal">
-          <div class="device-frame device-frame--lg">
-            <div class="device-frame__screen">
-              <img src="assets/images/quizwell-home_page.png" alt="QuizWell — calm math quiz practice for kids" loading="lazy">
-            </div>
-          </div>
-        </div>
-        <div class="feature-row__text reveal">
-          <span class="label-mono" style="color: var(--accent-gold);">Our apps — Ages 5–10</span>
-          <h2 style="margin-top: var(--space-sm);">Meet QuizWell</h2>
-          <div class="divider"></div>
-          <p style="line-height: 1.8;">Calm, parent-guided math quiz practice for children ages 5 to 10. Short focused sessions, personal encouragement from parents, and quiet results — all offline, all on your device.</p>
-          <div class="mt-lg">
-            <a href="quizwell/" class="btn btn--sage">Explore QuizWell</a>
-          </div>
-          <div data-store-badges="quizwell" data-variant="compact"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- For Organizations / Hyper-Agile Feature -->
+  <!-- Consulting: For Organizations / Hyper-Agile Quality Engineering -->
   <section class="section section--charcoal">
-    <div class="container">
+    <div class="container container--narrow">
       <div class="section-header reveal">
         <span class="label-mono">For organizations</span>
         <h2 style="margin-top: var(--space-sm);">Hyper-Agile Quality Engineering&trade;</h2>
         <div class="divider divider--center"></div>
-        <p>Carunel LLC works with organizations to assess software delivery and quality challenges, adapt the Hyper-Agile Quality Engineering&trade; framework to their operating environment, and support practical implementation across engineering, product, and quality.</p>
-        <p class="mt-md">Engagements may include organizational assessments, advisory and implementation support, leadership working sessions, workshops, and training.</p>
+        <p>Carunel LLC helps organizations reduce uncertainty earlier by connecting product intent, risk, validation, automation, release readiness, and production learning into one coherent operating model.</p>
       </div>
-      <div class="btn-group" style="justify-content: center;">
+      <ul class="org-list reveal mt-lg">
+        <li>Quality Engineering operating-model assessment</li>
+        <li>Hyper-Agile Quality Engineering&trade; adoption and implementation</li>
+        <li>AI-accelerated delivery readiness</li>
+        <li>Risk-based validation strategy</li>
+        <li>Automation and continuous quality-signal strategy</li>
+        <li>Change-impact and regression focus</li>
+        <li>Release-confidence and readiness assessment</li>
+        <li>Production feedback and organizational learning</li>
+        <li>Leadership working sessions, workshops, and training</li>
+      </ul>
+      <p class="reveal mt-lg text-sm" style="text-align: center; max-width: 560px; margin-left: auto; margin-right: auto; color: var(--text-on-charcoal-secondary);">These services are offered by Carunel LLC to organizations and cross-functional teams&mdash;not individual coaching or consumer consulting.</p>
+      <div class="btn-group mt-lg" style="justify-content: center;">
         <a href="https://hyperagiletesting.com/" class="btn btn--gold-outline" target="_blank" rel="noopener noreferrer">Explore Hyper-Agile Quality Engineering&trade; <span class="sr-only">(opens hyperagiletesting.com)</span></a>
         <a href="https://hyperagiletesting.com/consulting" class="btn btn--gold-outline" target="_blank" rel="noopener noreferrer">Discuss an Organizational Engagement <span class="sr-only">(opens hyperagiletesting.com)</span></a>
       </div>
     </div>
   </section>
 
-  <!-- Books & Media Preview -->
+  <!-- Books & Frameworks -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="label-mono">Books, frameworks, and media</span>
+        <span class="label-mono">Books &amp; Frameworks</span>
         <h2 style="margin-top: var(--space-sm);">Ideas that move beyond the screen.</h2>
         <div class="divider divider--center"></div>
       </div>
 
-      <div class="reveal" style="margin-bottom: var(--space-2xl);">
+      <div class="reveal">
         <div data-book-feature="hyper-agile-testing"></div>
         <p class="text-sm text-tertiary mt-md" style="max-width: none;">Explore Evgeny Tkachenko's books on Quality Engineering, AI-powered applications, and software delivery in an AI-accelerated world.</p>
         <div class="mt-sm">
           <a href="books-media/" class="label-mono" style="color: var(--accent-gold);">View All Books &rarr;</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="reveal">
-        <div class="media-card">
-          <span class="status-tag">Coming soon</span>
-          <h3 class="card__title" style="margin-top: var(--space-sm); font-size: 1.4rem;">Media &amp; Shows</h3>
-          <p class="card__text" style="font-size: 0.98rem; line-height: 1.7;">Educational media from Carunel is in development. Details will be shared when it's ready.</p>
+  <!-- Founder -->
+  <section class="section section--cream">
+    <div class="container container--narrow">
+      <div class="founder-row reveal">
+        <div class="founder-mark" aria-hidden="true">ET</div>
+        <div>
+          <span class="label-mono">Founded by Evgeny Tkachenko</span>
+          <p style="margin-top: var(--space-sm); font-size: 1rem; line-height: 1.8; max-width: 620px;">Evgeny Tkachenko is CEO of Carunel LLC, a software engineering and quality leader with more than twenty years of experience, speaker, and creator of the Hyper-Agile Quality Engineering&trade; framework and Hyper-Agile Quality Loop. He is the author of three books on Quality Engineering, AI-powered applications, and AI-accelerated software delivery, including the forthcoming Apress book <em>Hyper-Agile Testing</em>.</p>
+          <div class="btn-group mt-md">
+            <a href="about/" class="btn btn--secondary btn--sm">About Evgeny and Carunel</a>
+            <a href="books-media/" class="btn btn--secondary btn--sm">View All Books</a>
+            <a href="https://hyperagiletesting.com/" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Visit Hyper-Agile Testing <span class="sr-only">(opens hyperagiletesting.com)</span></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Brand Principles -->
+  <!-- Learning Apps (compact) -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="label-mono">Learning Apps</span>
+        <h2 style="margin-top: var(--space-sm);">Calm learning products for children and families.</h2>
+        <div class="divider divider--center"></div>
+        <p>Carunel creates thoughtful, privacy-conscious educational apps designed around clarity, honest presentation, and respect for children's attention. Explore Beadwell, GentleClover, and QuizWell.</p>
+      </div>
+      <div class="app-mini-row reveal-stagger">
+        <a href="beadwell/" class="app-mini reveal">
+          <img src="assets/images/beadwell-product-card.png" alt="" class="app-mini__icon">
+          <span class="app-mini__name">Beadwell</span>
+        </a>
+        <a href="gentleclover/" class="app-mini reveal">
+          <img src="assets/images/gentleclover_calm_playtime_essentials.png" alt="" class="app-mini__icon">
+          <span class="app-mini__name">GentleClover</span>
+        </a>
+        <a href="quizwell/" class="app-mini reveal">
+          <img src="assets/images/quizwell-product-card.png" alt="" class="app-mini__icon">
+          <span class="app-mini__name">QuizWell</span>
+        </a>
+      </div>
+      <div class="reveal" style="text-align: center;">
+        <a href="products/" class="btn btn--primary">Explore Learning Apps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curiosity Statement (brand story) -->
   <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Learning begins with curiosity.</h2>
+        <div class="divider divider--center"></div>
+        <p>Curiosity is the foundation of everything Carunel builds&mdash;from Quality Engineering frameworks and organizational consulting to calm, privacy-conscious learning apps for children and families.</p>
+        <p class="mt-md">Whether we're helping an engineering team reduce release risk or helping a child discover mathematics, our goal remains the same: help people ask better questions, test ideas, and understand how the world around them works.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Principles -->
+  <section class="section">
     <div class="container">
       <div class="section-header reveal">
         <h2>What guides us</h2>
@@ -374,30 +363,14 @@
     </div>
   </section>
 
-  <!-- Founder -->
-  <section class="section">
-    <div class="container container--narrow">
-      <div class="founder-row reveal">
-        <div class="founder-mark" aria-hidden="true">ET</div>
-        <div>
-          <span class="label-mono">Founded by Evgeny Tkachenko</span>
-          <p style="margin-top: var(--space-sm); font-size: 1rem; line-height: 1.8; max-width: 620px;">Evgeny Tkachenko is CEO of Carunel LLC, a software engineering and quality leader with more than twenty years of experience, speaker, and creator of the Hyper-Agile Quality Engineering&trade; framework and Hyper-Agile Quality Loop. He is the author of three books on Quality Engineering, AI-powered applications, and AI-accelerated software delivery, including the forthcoming Apress book <em>Hyper-Agile Testing</em>.</p>
-          <div class="mt-md">
-            <a href="about/" class="btn btn--secondary btn--sm">About Evgeny and Carunel</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Final CTA -->
   <section class="section--sm section--cream" style="padding: var(--space-xl) 0;">
     <div class="container" style="text-align: center;">
       <div class="reveal">
-        <h2>Explore what thoughtful learning can become.</h2>
+        <h2>Build confidence with Carunel.</h2>
         <div class="divider divider--center"></div>
         <div class="btn-group mt-lg" style="justify-content: center;">
-          <a href="#what-we-do" class="btn btn--primary">Explore Our Work</a>
+          <a href="organizations/" class="btn btn--primary">For Organizations</a>
           <a href="contact/" class="btn btn--secondary">Start a Conversation</a>
         </div>
       </div>
