@@ -1,18 +1,24 @@
-# Carunel Studio Website
+# Carunel Website
 
-A static multi-page website for **Carunel Studio**, featuring **Beadwell** as its first product.
+A static multi-page website for **Carunel LLC** — learning apps (Beadwell, GentleClover, QuizWell), organizational consulting via Hyper-Agile Quality Engineering™, books, and educational media.
 
 ## Pages
 
 | Route | File | Description |
 |-------|------|-------------|
 | `/` | `index.html` | Home page |
-| `/about` | `about.html` | About Carunel Studio |
-| `/products` | `products.html` | Products overview |
+| `/about` | `about/index.html` | About Carunel |
+| `/products` | `products/index.html` | Learning apps overview |
+| `/organizations` | `organizations/index.html` | Organizational consulting (Hyper-Agile Quality Engineering™) |
+| `/books-media` | `books-media/index.html` | Books, frameworks, and media |
 | `/beadwell` | `beadwell/index.html` | Beadwell product page |
-| `/beadwell/privacy` | `beadwell/privacy.html` | Beadwell Privacy Policy |
-| `/beadwell/terms` | `beadwell/terms.html` | Beadwell Terms of Use |
-| `/contact` | `contact.html` | Contact page |
+| `/beadwell/privacy` | `beadwell/privacy/index.html` | Beadwell Privacy Policy |
+| `/beadwell/terms` | `beadwell/terms/index.html` | Beadwell Terms of Use |
+| `/gentleclover` | `gentleclover/index.html` | GentleClover product page |
+| `/quizwell` | `quizwell/index.html` | QuizWell product page |
+| `/contact` | `contact/index.html` | Contact page |
+
+Organizational consulting, the framework, and the book live in full detail on [hyperagiletesting.com](https://hyperagiletesting.com/); Carunel's pages summarize and link out rather than duplicate that content.
 
 ## Running locally
 
@@ -45,8 +51,8 @@ All design tokens (colors, spacing, typography, radii) are CSS custom properties
 ### Adding a new product
 1. Create a new directory (e.g., `newproduct/`)
 2. Add `index.html` (and any legal pages) following the Beadwell page as a template
-3. Add a product card to `products.html`
-4. Update nav links in `js/main.js` if needed
+3. Add a product card to `products/index.html`
+4. Add the app to `STORE_LINKS` in `js/main.js` and to the footer's Learning Apps group
 
 ### Header and footer
 The header and footer are shared components rendered by `js/main.js`. Edit the `renderHeader()` and `renderFooter()` functions to change navigation links or footer content.
@@ -79,19 +85,23 @@ The site uses relative paths (`css/styles.css`, `../js/main.js`) so it works cor
 
 ```
 ├── index.html              # Home
-├── about.html              # About
-├── products.html           # Products
-├── contact.html            # Contact
-├── beadwell/
-│   ├── index.html          # Beadwell product page
-│   ├── privacy.html        # Privacy Policy
-│   └── terms.html          # Terms of Use
+├── about/index.html        # About Carunel
+├── products/index.html     # Learning apps
+├── organizations/index.html # For Organizations (Hyper-Agile Quality Engineering™)
+├── books-media/index.html  # Books & Media
+├── contact/index.html      # Contact
+├── beadwell/, gentleclover/, quizwell/
+│   ├── index.html          # Product page
+│   ├── privacy/index.html  # Privacy Policy
+│   └── terms/index.html    # Terms of Use
 ├── css/
 │   └── styles.css          # All styles
 ├── js/
-│   └── main.js             # Shared components & scripts
+│   └── main.js             # Shared components, site-wide config & scripts
 ├── assets/
 │   └── images/             # Product screenshots & icons
+├── sitemap.xml
+├── robots.txt
 └── README.md
 ```
 

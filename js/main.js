@@ -1,9 +1,23 @@
 /* ============================================
-   Carunel Studio — Shared Components & Scripts
+   Carunel — Shared Components & Scripts
    ============================================ */
 
 (function () {
   'use strict';
+
+  /* --- Shared Site Config: legal name, contact, and cross-brand links --- */
+  const SITE = {
+    companyName: 'Carunel',
+    legalName: 'Carunel LLC',
+    contactEmail: 'business@carunel.com',
+    hyperAgile: {
+      home: 'https://hyperagiletesting.com/',
+      book: 'https://hyperagiletesting.com/book',
+      framework: 'https://hyperagiletesting.com/framework',
+      qualityLoop: 'https://hyperagiletesting.com/quality-loop',
+      consulting: 'https://hyperagiletesting.com/consulting'
+    }
+  };
 
   /* --- Shared Product Data: App Store / Google Play / Amazon Appstore links --- */
   const STORE_LINKS = {
@@ -49,6 +63,8 @@
     if (path.includes('/quizwell')) return 'quizwell';
     if (path.includes('/about')) return 'about';
     if (path.includes('/products')) return 'products';
+    if (path.includes('/organizations')) return 'organizations';
+    if (path.includes('/books-media')) return 'books-media';
     if (path.includes('/contact')) return 'contact';
     return 'home';
   }
@@ -65,13 +81,14 @@
     header.setAttribute('role', 'banner');
     header.innerHTML = `
       <div class="site-header__inner">
-        <a href="${prefix || '/'}" class="site-header__logo">
-            <img src="${prefix}assets/images/carunel-logo-transparent.png" alt="Carunel Studio" class="site-header__logo-img">
+        <a href="${prefix || '/'}" class="site-header__logo" aria-label="Carunel — home">
+            <img src="${prefix}assets/images/carunel-logo.svg" alt="Carunel" class="site-header__logo-img">
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix || '/'}" class="site-nav__link${active('home')}">Studio</a>
+          <a href="${prefix}products/" class="site-nav__link${active('products')}">Apps</a>
+          <a href="${prefix}organizations/" class="site-nav__link${active('organizations')}">For Organizations</a>
+          <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}">Books &amp; Media</a>
           <a href="${prefix}about/" class="site-nav__link${active('about')}">About</a>
-          <a href="${prefix}products/" class="site-nav__link${active('products')}">Products</a>
           <a href="${prefix}contact/" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -126,32 +143,32 @@
       <div class="site-footer__inner">
         <div class="site-footer__top">
           <div>
-            <img src="${prefix}assets/images/carunel-logo-transparent.png" alt="Carunel Studio" class="site-footer__logo-img">
-            <p class="site-footer__tagline">Thoughtful digital products for children and families.</p>
+            <img src="${prefix}assets/images/carunel-logo.svg" alt="Carunel" class="site-footer__logo-img">
+            <p class="site-footer__tagline">Thoughtful learning products, practical frameworks, organizational services, and educational media.</p>
           </div>
           <div class="site-footer__links">
             <div class="site-footer__link-group">
-              <h4>Studio</h4>
+              <h4>Carunel</h4>
               <a href="${prefix}about/">About</a>
               <a href="${prefix}contact/">Contact</a>
             </div>
             <div class="site-footer__link-group">
-              <h4>Beadwell</h4>
-              <a href="${prefix}beadwell/">Product</a>
-              <a href="${prefix}beadwell/privacy/">Privacy Policy</a>
-              <a href="${prefix}beadwell/terms/">Terms of Use</a>
+              <h4>Learning Apps</h4>
+              <a href="${prefix}beadwell/">Beadwell</a>
+              <a href="${prefix}gentleclover/">GentleClover</a>
+              <a href="${prefix}quizwell/">QuizWell</a>
+              <a href="${prefix}products/">All Apps</a>
             </div>
             <div class="site-footer__link-group">
-              <h4>GentleClover</h4>
-              <a href="${prefix}gentleclover/">Product</a>
-              <a href="${prefix}gentleclover/privacy/">Privacy Policy</a>
-              <a href="${prefix}gentleclover/terms/">Terms of Use</a>
+              <h4>For Organizations</h4>
+              <a href="${prefix}organizations/">Carunel overview</a>
+              <a href="${SITE.hyperAgile.home}" target="_blank" rel="noopener noreferrer">Hyper-Agile Quality Engineering&trade;</a>
+              <a href="${SITE.hyperAgile.consulting}" target="_blank" rel="noopener noreferrer">Consulting</a>
             </div>
             <div class="site-footer__link-group">
-              <h4>QuizWell</h4>
-              <a href="${prefix}quizwell/">Product</a>
-              <a href="${prefix}quizwell/privacy/">Privacy Policy</a>
-              <a href="${prefix}quizwell/terms/">Terms of Use</a>
+              <h4>Books &amp; Media</h4>
+              <a href="${SITE.hyperAgile.book}" target="_blank" rel="noopener noreferrer">Hyper-Agile Testing</a>
+              <a href="${prefix}books-media/#media">Test the World</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
@@ -161,7 +178,8 @@
           </div>
         </div>
         <div class="site-footer__bottom">
-          <span class="site-footer__copyright">&copy; ${year} Carunel Studio. All rights reserved.</span>
+          <p class="site-footer__attribution">Hyper-Agile Quality Engineering&trade; was created by Evgeny Tkachenko. Organizational consulting, implementation support, workshops, and training are offered by ${SITE.legalName}.</p>
+          <span class="site-footer__copyright">&copy; ${year} ${SITE.legalName}. All rights reserved.</span>
         </div>
       </div>
     `;

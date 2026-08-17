@@ -3,15 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carunel Studio — Thoughtful Digital Products for Children and Families</title>
-  <meta name="description" content="Carunel Studio creates calm digital products for children and thoughtful educational experiences that inspire curiosity, critical thinking, and lifelong learning.">
+  <title>Carunel | Educational Products, Professional Learning &amp; Media</title>
+  <meta name="description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
   <link rel="canonical" href="https://carunel.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Carunel">
+  <meta property="og:url" content="https://carunel.com/">
+  <meta property="og:title" content="Carunel | Educational Products, Professional Learning & Media">
+  <meta property="og:description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
+  <meta property="og:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Carunel | Educational Products, Professional Learning & Media">
+  <meta name="twitter:description" content="Carunel creates thoughtful educational apps, practical frameworks, organizational learning and consulting experiences, books, and media for people and organizations.">
+  <meta name="twitter:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="assets/images/carunel-favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/carunel-favicon-180.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Carunel LLC",
+    "alternateName": "Carunel",
+    "url": "https://carunel.com/",
+    "logo": "https://carunel.com/assets/images/carunel-favicon-180.png",
+    "sameAs": [
+      "https://www.facebook.com/carunelstudio",
+      "https://www.instagram.com/carunelstudio",
+      "https://hyperagiletesting.com/"
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header and footer injected by main.js -->
@@ -34,10 +59,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 0;
-    }
-    .hero__visual-stack .device-frame {
-      position: relative;
-      z-index: 1;
     }
     .hero__brand-mark {
       position: relative;
@@ -89,6 +110,27 @@
       .hero__content { grid-template-columns: 1.4fr 1fr; }
       .hero__text { max-width: var(--max-width-text); }
     }
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .work-card__text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+    .work-card__link {
+      display: inline-block;
+      margin-top: var(--space-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .work-card__link--terracotta { color: var(--accent-terracotta); }
+    .work-card__link--charcoal { color: var(--text-primary); }
+    .work-card__link--gold { color: var(--accent-gold); }
+    .work-card__link--media { color: var(--accent-media); }
   </style>
 
   <!-- Hero -->
@@ -99,23 +141,24 @@
     <div class="container">
       <div class="hero__content">
         <div class="hero__text">
-          <span class="label-mono">Carunel Studio</span>
-          <h1 style="margin-top: var(--space-sm);">Thoughtful digital<br class="hero-break"> products for children<br class="hero-break"> and families.</h1>
-          <p>Carunel Studio creates calm, privacy-conscious experiences designed with warmth, clarity, and care.</p>
+          <span class="label-mono">Carunel</span>
+          <h1 style="margin-top: var(--space-sm);">Thoughtful ways to learn,<br class="hero-break"> explore, and build with<br class="hero-break"> confidence.</h1>
+          <p>Carunel creates educational apps, practical frameworks, organizational learning experiences, and media that help people ask better questions, understand how things work, and put knowledge into practice.</p>
           <div class="btn-group">
-            <a href="products/" class="btn btn--primary hero-cta">Explore our apps</a>
+            <a href="#what-we-do" class="btn btn--primary hero-cta">Explore Our Work</a>
+            <a href="organizations/" class="btn btn--secondary hero-cta">For Organizations</a>
           </div>
           <div class="hero-signals">
-            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Offline-first</span>
-            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--terracotta"></span> Calm by design</span>
-            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--blue"></span> Parent-aware</span>
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--sage"></span> Curiosity-led</span>
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--terracotta"></span> Thoughtfully designed</span>
+            <span class="hero-signal"><span class="hero-signal__dot hero-signal__dot--blue"></span> Built for confidence</span>
           </div>
         </div>
         <div class="hero__visual">
           <div class="hero__visual-stack">
             <div class="decor-circle--behind"></div>
             <div class="hero__brand-mark">
-              <img src="assets/images/carunel-symbol.svg" alt="Carunel Studio symbol">
+              <img src="assets/images/carunel-symbol.svg" alt="Carunel symbol — a sprout representing curiosity and growth">
             </div>
           </div>
         </div>
@@ -123,48 +166,65 @@
     </div>
   </section>
 
-  <!-- Studio Intro -->
-  <section class="section--sm section--cream" style="padding: var(--space-xl) 0;">
+  <!-- What We Do -->
+  <section id="what-we-do" class="section--sm section--cream" style="padding: var(--space-xl) 0;">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Learning begins with curiosity</h2>
+        <h2>One company. Several ways to learn.</h2>
         <div class="divider divider--center"></div>
-        <p>Carunel Studio creates thoughtful educational experiences that encourage curiosity, critical thinking, and confidence in learning.</p>
-        <p class="mt-md">We began by building calm, privacy-conscious digital products for children and families. As the studio grows, we are expanding into books, educational media, and other experiences that help people of all ages ask better questions, test ideas, and understand how the world around them works.</p>
-        <p class="mt-md">Whether a child is discovering mathematics, a professional is learning how to build more reliable technology, or a family is exploring the hidden thinking behind an everyday product, our goal remains the same: to make learning engaging, meaningful, and accessible.</p>
+        <p>Our work serves different audiences, but it shares one purpose: making learning engaging, meaningful, trustworthy, and useful in practice.</p>
+      </div>
+      <div class="grid grid--4 reveal-stagger">
+        <div class="card work-card reveal">
+          <h3 class="card__title">Learning Apps</h3>
+          <p class="work-card__text">Calm, privacy-conscious educational products designed for children and families.</p>
+          <a href="products/" class="work-card__link work-card__link--terracotta">Explore Our Apps &rarr;</a>
+        </div>
+        <div class="card work-card reveal">
+          <h3 class="card__title">Professional Learning &amp; Consulting</h3>
+          <p class="work-card__text">Frameworks, organizational assessments, implementation support, workshops, and training that help leaders and teams strengthen how they build confidence in software delivery.</p>
+          <a href="organizations/" class="work-card__link work-card__link--charcoal">For Organizations &rarr;</a>
+        </div>
+        <div class="card work-card reveal">
+          <h3 class="card__title">Books &amp; Frameworks</h3>
+          <p class="work-card__text">Practical ideas for professionals navigating Quality Engineering, AI-assisted delivery, risk, and release confidence.</p>
+          <a href="books-media/" class="work-card__link work-card__link--gold">Explore Books &amp; Frameworks &rarr;</a>
+        </div>
+        <div class="card work-card reveal">
+          <h3 class="card__title">Media &amp; Shows</h3>
+          <p class="work-card__text">Educational stories, experiments, and programs that make the thinking behind trusted products and systems visible.</p>
+          <a href="books-media/#media" class="work-card__link work-card__link--media">Explore Media &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Principles -->
+  <!-- Curiosity Statement -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <h2>What guides us</h2>
+        <h2>Learning begins with curiosity.</h2>
         <div class="divider divider--center"></div>
+        <p>Carunel began by creating calm, privacy-conscious learning products for children and families. Today, that same belief in curiosity, clarity, and thoughtful design extends into books, professional frameworks, organizational learning, consulting, and educational media.</p>
+        <p class="mt-md">Whether a child is discovering mathematics, a professional is learning how to build more reliable technology, or a family is exploring the hidden thinking behind an everyday product, our goal remains the same: help people ask better questions, test ideas, and understand how the world around them works.</p>
       </div>
-      <div class="grid grid--3 reveal-stagger">
-        <div class="card card--flat reveal">
-          <span class="num-mark">01 / Design</span>
-          <h3 class="card__title">Thoughtful design</h3>
-          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">Every interaction is considered. We design for clarity, warmth, and focus — not engagement metrics or time-on-screen.</p>
-        </div>
-        <div class="card card--flat reveal">
-          <span class="num-mark" style="color: var(--accent-sage);">02 / Learning</span>
-          <h3 class="card__title">Curiosity and critical thinking</h3>
-          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">We create space for people to think, explore, test ideas, and learn at their own pace. For children, that means calm experiences without pressure or noisy rewards. Across everything we create, learning begins with curiosity.</p>
-        </div>
-        <div class="card card--flat reveal">
-          <span class="num-mark" style="color: var(--accent-gold);">03 / Privacy</span>
-          <h3 class="card__title">Privacy-conscious by default</h3>
-          <p class="card__text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">We don't collect data we don't need. Our products work offline, respect family boundaries, and keep information on your device.</p>
-        </div>
+    </div>
+  </section>
+
+  <!-- Learning Apps Intro -->
+  <section class="section--sm section--cream" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label-mono">Learning products</span>
+        <h2 style="margin-top: var(--space-sm);">Calm educational apps for children and families.</h2>
+        <div class="divider divider--center"></div>
+        <p>Our apps are designed around clarity, privacy, honest presentation, and respect for children's attention. They work without ads, accounts, or unnecessary data collection.</p>
       </div>
     </div>
   </section>
 
   <!-- Featured Product: Beadwell -->
-  <section class="section section--blush">
+  <section class="section section--cream">
     <div class="container">
       <div class="feature-row">
         <div class="feature-row__visual reveal">
@@ -189,7 +249,7 @@
   </section>
 
   <!-- Featured Product: GentleClover -->
-  <section class="section section--cream">
+  <section class="section">
     <div class="container">
       <div class="feature-row feature-row--reverse">
         <div class="feature-row__visual reveal">
@@ -214,7 +274,7 @@
   </section>
 
   <!-- Featured Product: QuizWell -->
-  <section class="section">
+  <section class="section section--cream">
     <div class="container">
       <div class="feature-row feature-row--reverse">
         <div class="feature-row__visual reveal">
@@ -233,6 +293,123 @@
             <a href="quizwell/" class="btn btn--sage">Explore QuizWell</a>
           </div>
           <div data-store-badges="quizwell" data-variant="compact"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Organizations / Hyper-Agile Feature -->
+  <section class="section section--charcoal">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label-mono">For organizations</span>
+        <h2 style="margin-top: var(--space-sm);">Hyper-Agile Quality Engineering&trade;</h2>
+        <div class="divider divider--center"></div>
+        <p>Carunel LLC works with organizations to assess software delivery and quality challenges, adapt the Hyper-Agile Quality Engineering&trade; framework to their operating environment, and support practical implementation across engineering, product, and quality.</p>
+        <p class="mt-md">Engagements may include organizational assessments, advisory and implementation support, leadership working sessions, workshops, and training.</p>
+      </div>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="https://hyperagiletesting.com/" class="btn btn--gold-outline" target="_blank" rel="noopener noreferrer">Explore Hyper-Agile Quality Engineering&trade; <span class="sr-only">(opens hyperagiletesting.com)</span></a>
+        <a href="https://hyperagiletesting.com/consulting" class="btn btn--gold-outline" target="_blank" rel="noopener noreferrer">Discuss an Organizational Engagement <span class="sr-only">(opens hyperagiletesting.com)</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books & Media Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label-mono">Books, frameworks, and media</span>
+        <h2 style="margin-top: var(--space-sm);">Ideas that move beyond the screen.</h2>
+        <div class="divider divider--center"></div>
+      </div>
+
+      <div class="reveal" style="margin-bottom: var(--space-2xl);">
+        <div class="book-card">
+          <div class="book-card__cover">
+            <span class="book-card__cover-eyebrow">Forthcoming from Apress</span>
+            <span class="book-card__cover-title">Hyper-Agile Testing</span>
+            <span class="book-card__cover-author">Evgeny Tkachenko</span>
+          </div>
+          <div>
+            <span class="label-mono">Hyper-Agile Testing</span>
+            <h3 class="card__title" style="font-size: 1.4rem; margin-top: var(--space-xs);">Delivering Software in an AI-Accelerated World</h3>
+            <p class="card__text" style="font-size: 0.98rem; line-height: 1.7;">A forthcoming Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.</p>
+            <div class="btn-group mt-md">
+              <a href="https://hyperagiletesting.com/book" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Explore the Book</a>
+              <a href="https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Preorder on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="media-card">
+          <span class="status-tag">In development</span>
+          <h3 class="card__title" style="margin-top: var(--space-sm); font-size: 1.4rem;">Test the World</h3>
+          <p class="card__text" style="font-size: 0.98rem; line-height: 1.7;">An educational media concept exploring how trust is built in the products, systems, and technology people use every day&mdash;through engineering, testing, experimentation, and the people behind the work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Principles -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What guides us</h2>
+        <div class="divider divider--center"></div>
+      </div>
+      <div class="grid grid--2 reveal-stagger">
+        <div class="card card--flat reveal">
+          <span class="num-mark">01</span>
+          <h3 class="card__title">Curiosity before assumptions</h3>
+          <p class="card__text" style="font-size: 0.95rem; line-height: 1.7;">We encourage people to ask better questions, explore evidence, and remain open to learning.</p>
+        </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark" style="color: var(--accent-sage);">02</span>
+          <h3 class="card__title">Clarity over noise</h3>
+          <p class="card__text" style="font-size: 0.95rem; line-height: 1.7;">We make complex ideas understandable without pressure, distraction, or unnecessary complexity.</p>
+        </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark" style="color: var(--accent-gold);">03</span>
+          <h3 class="card__title">Learning through application</h3>
+          <p class="card__text" style="font-size: 0.95rem; line-height: 1.7;">Knowledge becomes useful when people can test it, apply it, and learn from the result.</p>
+        </div>
+        <div class="card card--flat reveal">
+          <span class="num-mark" style="color: var(--accent-blue);">04</span>
+          <h3 class="card__title">Trust by design</h3>
+          <p class="card__text" style="font-size: 0.95rem; line-height: 1.7;">We treat privacy, responsible technology, honest presentation, and evidence-based confidence as design responsibilities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="founder-row reveal">
+        <div class="founder-mark" aria-hidden="true">ET</div>
+        <div>
+          <span class="label-mono">Founded by Evgeny Tkachenko</span>
+          <p style="margin-top: var(--space-sm); font-size: 1rem; line-height: 1.8; max-width: 620px;">Evgeny Tkachenko is CEO of Carunel LLC, a software engineering and quality leader with more than twenty years of experience, author of the forthcoming Apress book <em>Hyper-Agile Testing</em>, speaker, and creator of the Hyper-Agile Quality Engineering&trade; framework and Hyper-Agile Quality Loop.</p>
+          <div class="mt-md">
+            <a href="about/" class="btn btn--secondary btn--sm">About Evgeny and Carunel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section--sm section--cream" style="padding: var(--space-xl) 0;">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <h2>Explore what thoughtful learning can become.</h2>
+        <div class="divider divider--center"></div>
+        <div class="btn-group mt-lg" style="justify-content: center;">
+          <a href="#what-we-do" class="btn btn--primary">Explore Our Work</a>
+          <a href="contact/" class="btn btn--secondary">Start a Conversation</a>
         </div>
       </div>
     </div>

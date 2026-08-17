@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 146" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345 146" fill="none">
   <!-- Seed/sprout symbol -->
   <g transform="translate(18, 10)">
     <!-- Seed body -->
@@ -12,6 +12,6 @@
     <!-- Right leaf -->
     <path d="M56 16 C68 6 78 14 68 28 C62 22 58 18 56 16Z" fill="#A0B280"/>
   </g>
-  <!-- Text: Carunel Studio -->
-  <text x="120" y="92" font-family="'DM Serif Display', Georgia, serif" font-size="58" font-weight="400" fill="#8B7362" letter-spacing="0.5">Carunel Studio</text>
+  <!-- Text: Carunel -->
+  <text x="120" y="92" font-family="'DM Serif Display', Georgia, serif" font-size="58" font-weight="400" fill="#8B7362" letter-spacing="0.5">Carunel</text>
 </svg>
