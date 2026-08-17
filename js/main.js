@@ -44,6 +44,45 @@
     }
   };
 
+  /* --- Shared Book Data: Evgeny Tkachenko's books --- */
+  // Single source of truth for title, author, year, and Amazon links so book
+  // cards on the homepage and /books-media/ never drift out of sync.
+  // `group: 'earlier'` marks the earlier-books grid on /books-media/.
+  const BOOKS = {
+    'hyper-agile-testing': {
+      title: 'Hyper-Agile Testing',
+      subtitle: 'Delivering Software in an AI-Accelerated World',
+      author: 'Evgeny Tkachenko',
+      year: null,
+      status: 'forthcoming',
+      coverEyebrow: 'Forthcoming from Apress',
+      description: 'A forthcoming Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.',
+      exploreUrl: 'https://hyperagiletesting.com/book',
+      amazonUrl: 'https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V',
+      amazonLabel: 'Preorder on Amazon'
+    },
+    'navigating-quality-engineering': {
+      group: 'earlier',
+      title: 'Navigating Quality Engineering in the AI Era',
+      subtitle: 'Key Insights for Modern Quality Engineering and Management',
+      author: 'Evgeny Tkachenko',
+      year: 2024,
+      status: 'published',
+      description: 'A practical examination of how artificial intelligence, automation, DevOps, and changing delivery expectations are reshaping Quality Engineering roles, practices, and leadership.',
+      amazonUrl: 'https://www.amazon.com/Navigating-Quality-Engineering-Era-Management/dp/B0D9PGJ6HB'
+    },
+    'testing-ai-powered-applications': {
+      group: 'earlier',
+      title: 'Testing AI-Powered Applications',
+      subtitle: 'Ensuring Quality in the Age of Intelligent Software',
+      author: 'Evgeny Tkachenko',
+      year: 2024,
+      status: 'published',
+      description: 'A focused guide to testing AI-powered systems, including strategies for evaluating accuracy, robustness, interpretability, fairness, data variability, model uncertainty, and responsible AI quality.',
+      amazonUrl: 'https://www.amazon.com/Testing-AI-Powered-Applications-Ensuring-Intelligent/dp/B0DJSPTX4J'
+    }
+  };
+
   /* --- Path helper --- */
   // Compute the relative prefix from the current page to the site root,
   // based on directory depth. Works for any nesting: /, /about/, /beadwell/privacy/, etc.
@@ -167,6 +206,7 @@
             </div>
             <div class="site-footer__link-group">
               <h4>Books &amp; Media</h4>
+              <a href="${prefix}books-media/">All Books &amp; Media</a>
               <a href="${SITE.hyperAgile.book}" target="_blank" rel="noopener noreferrer">Hyper-Agile Testing</a>
               <a href="${prefix}books-media/#media">Test the World</a>
             </div>
@@ -259,6 +299,96 @@
     });
   }
 
+  /* --- Book Components --- */
+  // Featured book: the flagship/forthcoming title, shown larger with a cover
+  // and up to two CTAs (an "explore" link plus Amazon).
+  // Usage: <div data-book-feature="hyper-agile-testing"></div>
+  function renderBookCover(book, small) {
+    const eyebrow = book.coverEyebrow || (book.year ? String(book.year) : '');
+    const eyebrowClass = small ? 'book-mini__cover-year' : 'book-card__cover-eyebrow';
+    const titleClass = small ? 'book-mini__cover-title' : 'book-card__cover-title';
+    const authorClass = small ? 'book-mini__cover-author' : 'book-card__cover-author';
+    const coverClass = small ? 'book-mini__cover' : 'book-card__cover';
+    return `
+      <div class="${coverClass}">
+        ${eyebrow ? `<span class="${eyebrowClass}">${eyebrow}</span>` : ''}
+        <span class="${titleClass}">${book.title}</span>
+        ${small ? '' : `<span class="${authorClass}">${book.author}</span>`}
+      </div>
+    `;
+  }
+
+  // opts: { label, headingTag, headingText, headingStyle, divider } lets the
+  // preview (homepage) and full (books-media) contexts each keep their own
+  // heading level and copy while sharing one source of book data.
+  function renderFeaturedBook(book, opts) {
+    opts = opts || {};
+    const amazonLabel = book.amazonLabel || 'View on Amazon';
+    const headingTag = opts.headingTag || 'h3';
+    const headingClass = headingTag === 'h2' ? '' : ' class="card__title"';
+    const headingStyle = opts.headingStyle || 'font-size: 1.4rem; margin-top: var(--space-xs);';
+    const headingText = opts.headingText || book.subtitle || book.title;
+    const label = opts.label || book.title;
+    let ctas = '';
+    if (book.exploreUrl) {
+      ctas += `<a href="${book.exploreUrl}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Explore the Book</a>`;
+    }
+    if (book.amazonUrl) {
+      ctas += `<a href="${book.amazonUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" aria-label="${amazonLabel}: ${book.title}">${amazonLabel}</a>`;
+    }
+    return `
+      <div class="book-card">
+        ${renderBookCover(book, false)}
+        <div>
+          <span class="label-mono">${label}</span>
+          <${headingTag}${headingClass} style="${headingStyle}">${headingText}</${headingTag}>
+          ${opts.divider ? '<div class="divider"></div>' : ''}
+          <p class="card__text" style="font-size: 0.98rem; line-height: 1.7;">${book.description}</p>
+          <div class="btn-group mt-md">${ctas}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Earlier-books grid: compact, equal-height cards with a single Amazon CTA.
+  // Usage: <div data-book-grid="earlier"></div>
+  function renderBookGridCard(book) {
+    const fullTitle = book.subtitle ? `${book.title}: ${book.subtitle}` : book.title;
+    return `
+      <div class="book-mini">
+        ${renderBookCover(book, true)}
+        <h3 class="book-mini__title">${fullTitle}</h3>
+        <p class="book-mini__meta">${book.author} &middot; ${book.year}</p>
+        <p class="book-mini__text">${book.description}</p>
+        <div class="btn-group">
+          <a href="${book.amazonUrl}" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer" aria-label="View ${fullTitle} on Amazon">View on Amazon</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function initBooks() {
+    document.querySelectorAll('[data-book-feature]').forEach((mount) => {
+      const book = BOOKS[mount.getAttribute('data-book-feature')];
+      if (!book) return;
+      const opts = {
+        label: mount.getAttribute('data-book-label') || undefined,
+        headingTag: mount.getAttribute('data-book-heading-tag') || undefined,
+        headingStyle: mount.getAttribute('data-book-heading-style') || undefined,
+        headingText: mount.getAttribute('data-book-heading-text') || undefined,
+        divider: mount.hasAttribute('data-book-divider')
+      };
+      mount.outerHTML = renderFeaturedBook(book, opts);
+    });
+    document.querySelectorAll('[data-book-grid]').forEach((mount) => {
+      const group = mount.getAttribute('data-book-grid');
+      const books = Object.keys(BOOKS)
+        .filter((key) => BOOKS[key].group === group)
+        .map((key) => BOOKS[key]);
+      mount.outerHTML = `<div class="book-grid">${books.map(renderBookGridCard).join('')}</div>`;
+    });
+  }
+
   /* --- Scroll Reveal --- */
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
@@ -285,6 +415,7 @@
     initDownloadCta();
     renderFooter();
     initStoreBadges();
+    initBooks();
     initReveal();
   });
 })();
