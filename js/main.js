@@ -121,7 +121,8 @@
     header.innerHTML = `
       <div class="site-header__inner">
         <a href="${prefix || '/'}" class="site-header__logo" aria-label="Carunel — home">
-            <img src="${prefix}assets/images/carunel-logo.svg" alt="Carunel" class="site-header__logo-img">
+            <img src="${prefix}assets/images/carunel-symbol.svg" alt="" class="site-header__logo-icon">
+            <span class="site-header__logo-text">Carunel</span>
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
           <a href="${prefix}products/" class="site-nav__link${active('products')}">Apps</a>
@@ -182,7 +183,10 @@
       <div class="site-footer__inner">
         <div class="site-footer__top">
           <div>
-            <img src="${prefix}assets/images/carunel-logo.svg" alt="Carunel" class="site-footer__logo-img">
+            <div class="site-footer__logo">
+              <img src="${prefix}assets/images/carunel-symbol.svg" alt="" class="site-footer__logo-icon">
+              <span class="site-footer__logo-text">Carunel</span>
+            </div>
             <p class="site-footer__tagline">Thoughtful learning products, practical frameworks, organizational services, and educational media.</p>
           </div>
           <div class="site-footer__links">
@@ -208,7 +212,7 @@
               <h4>Books &amp; Media</h4>
               <a href="${prefix}books-media/">All Books &amp; Media</a>
               <a href="${SITE.hyperAgile.book}" target="_blank" rel="noopener noreferrer">Hyper-Agile Testing</a>
-              <a href="${prefix}books-media/#media">Test the World</a>
+              <a href="${prefix}books-media/#media">Media &amp; Shows</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
