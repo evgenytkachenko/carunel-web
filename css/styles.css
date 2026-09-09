@@ -933,22 +933,42 @@ p {
   margin-top: auto;
 }
 
-/* --- Contact layout: inquiry form + direct-email card --- */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: var(--space-xl);
-  align-items: start;
+/* --- Email banner: compact "prefer to email?" strip above the inquiry
+   form, shown only once the form is configured (see initInquiryForm).
+   Replaces a side-by-side form/email-card grid, which left an orphaned
+   gap next to the much-shorter email card. --- */
+.email-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  background-color: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
-@media (max-width: 768px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
+.email-banner__text {
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+}
+
+.email-banner__email {
+  font-weight: 600;
+  color: var(--accent-terracotta);
+}
+
+.email-banner__email:hover {
+  text-decoration: underline;
 }
 
 .contact-card--email {
   max-width: none;
+}
+
+.contact-card--email .contact-card__email-row {
+  justify-content: center;
 }
 
 .contact-card__email-row {

@@ -533,14 +533,17 @@
     const heading = document.querySelector('[data-inquiry-heading]');
     const subtext = document.querySelector('[data-inquiry-subtext]');
     const acknowledgment = document.querySelector('[data-inquiry-acknowledgment]');
+    const emailBanner = document.querySelector('[data-email-banner]');
+    const emailFallbackCard = document.querySelector('[data-email-fallback-card]');
 
     const formId = getFormspreeFormId();
     if (!formId) {
       // Unconfigured: leave the mount empty rather than render a form with
       // nowhere to submit. The heading/subtext already default to
-      // form-free copy in the HTML, and the acknowledgment stays hidden,
-      // so visitors are never told about a form that isn't there. Only
-      // note this locally — never in production.
+      // form-free copy in the HTML, the acknowledgment stays hidden, and
+      // the standalone email card (not the compact banner) is the only
+      // contact option shown, so visitors are never told about a form
+      // that isn't there. Only note this locally — never in production.
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         console.info('[Carunel] FORMSPREE_FORM_ID is not set in js/config.js — the inquiry form is hidden. The direct-email option on this page still works.');
       }
@@ -548,8 +551,13 @@
     }
 
     if (heading) heading.textContent = 'Start a General Inquiry';
-    if (subtext) subtext.textContent = 'Prefer not to use a form? Email us directly — both reach the same inbox.';
+    if (subtext) subtext.textContent = 'We typically respond within a few business days.';
     if (acknowledgment) acknowledgment.hidden = false;
+    // Once a form renders, the compact banner above it becomes the
+    // email alternative, replacing the taller standalone card — no more
+    // pairing a full-height form beside a short card in a lopsided grid.
+    if (emailBanner) emailBanner.hidden = false;
+    if (emailFallbackCard) emailFallbackCard.hidden = true;
 
     mount.outerHTML = renderInquiryForm(formId);
 

@@ -97,20 +97,27 @@
         <p style="margin: 0;" data-inquiry-subtext>Email us directly below — we typically respond within a few business days.</p>
       </div>
 
-      <div class="contact-layout reveal">
-        <div data-inquiry-form></div>
+      <div class="email-banner reveal" data-email-banner hidden>
+        <span class="email-banner__text">Prefer to email instead?</span>
+        <a href="mailto:business@carunel.com" class="email-banner__email">business@carunel.com</a>
+        <button type="button" class="copy-email-btn" data-copy-email="business@carunel.com" aria-label="Copy email address business@carunel.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span class="copy-email-btn__label">Copy</span>
+        </button>
+      </div>
 
-        <div class="contact-card contact-card--email">
-          <span class="contact-card__label">Email Carunel directly</span>
-          <div class="contact-card__email-row">
-            <a href="mailto:business@carunel.com" class="contact-card__email">business@carunel.com</a>
-            <button type="button" class="copy-email-btn" data-copy-email="business@carunel.com" aria-label="Copy email address business@carunel.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              <span class="copy-email-btn__label">Copy</span>
-            </button>
-          </div>
-          <p class="card__text mt-md text-sm">All inquiries go to the same address. We typically respond within a few business days.</p>
+      <div data-inquiry-form class="reveal"></div>
+
+      <div class="contact-card contact-card--email reveal" data-email-fallback-card style="max-width: 560px; margin: var(--space-lg) auto 0; text-align: center;">
+        <span class="contact-card__label">Email Carunel directly</span>
+        <div class="contact-card__email-row">
+          <a href="mailto:business@carunel.com" class="contact-card__email">business@carunel.com</a>
+          <button type="button" class="copy-email-btn" data-copy-email="business@carunel.com" aria-label="Copy email address business@carunel.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            <span class="copy-email-btn__label">Copy</span>
+          </button>
         </div>
+        <p class="card__text mt-md text-sm">All inquiries go to the same address. We typically respond within a few business days.</p>
       </div>
 
       <p class="text-sm text-tertiary mt-lg reveal" data-inquiry-acknowledgment hidden style="max-width: 640px;">Submitting the form sends the information you enter to Formspree for delivery to Carunel. See our <a href="../privacy/" style="color: var(--accent-terracotta);">Privacy Policy</a> for details.</p>
