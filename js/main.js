@@ -58,8 +58,7 @@
       coverEyebrow: 'Forthcoming from Apress',
       description: 'A forthcoming Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.',
       exploreUrl: 'https://hyperagiletesting.com/book',
-      amazonUrl: 'https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V',
-      amazonLabel: 'Preorder on Amazon'
+      amazonUrl: 'https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V'
     },
     'navigating-quality-engineering': {
       group: 'earlier',
@@ -114,6 +113,7 @@
     const prefix = rootPrefix();
 
     const active = (p) => page === p ? ' site-nav__link--active' : '';
+    const ariaCurrent = (p) => page === p ? ' aria-current="page"' : '';
 
     const header = document.createElement('header');
     header.className = 'site-header';
@@ -125,11 +125,11 @@
             <span class="site-header__logo-text">Carunel</span>
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix}organizations/" class="site-nav__link${active('organizations')}">For Organizations</a>
-          <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}">Books &amp; Frameworks</a>
-          <a href="${prefix}products/" class="site-nav__link${active('products')}">Learning Apps</a>
-          <a href="${prefix}about/" class="site-nav__link${active('about')}">About</a>
-          <a href="${prefix}contact/" class="site-nav__link site-nav__link--muted${active('contact')}">Contact</a>
+          <a href="${prefix}organizations/" class="site-nav__link${active('organizations')}"${ariaCurrent('organizations')}>For Organizations</a>
+          <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}"${ariaCurrent('books-media')}>Books &amp; Frameworks</a>
+          <a href="${prefix}products/" class="site-nav__link${active('products')}"${ariaCurrent('products')}>Learning Apps</a>
+          <a href="${prefix}about/" class="site-nav__link${active('about')}"${ariaCurrent('about')}>About</a>
+          <a href="${prefix}contact/" class="site-nav__link site-nav__link--muted${active('contact')}"${ariaCurrent('contact')}>Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span class="nav-toggle__bar"></span>
@@ -139,14 +139,15 @@
       </div>
     `;
 
-    // Skip-to-content link
+    // Skip-to-content link — must be prepended after the header so it lands
+    // as the very first focusable element in the document, not the second.
     const skip = document.createElement('a');
     skip.href = '#main-content';
     skip.className = 'skip-link';
     skip.textContent = 'Skip to content';
-    document.body.prepend(skip);
 
     document.body.prepend(header);
+    document.body.prepend(skip);
 
     // Add main-content id to first section after header
     const firstSection = document.querySelector('section, .legal-page');
@@ -192,7 +193,7 @@
           <div class="site-footer__links">
             <div class="site-footer__link-group">
               <h4>For Organizations</h4>
-              <a href="${prefix}organizations/">Carunel overview</a>
+              <a href="${prefix}organizations/">Consulting Overview</a>
               <a href="${SITE.hyperAgile.home}" target="_blank" rel="noopener noreferrer">Hyper-Agile Quality Engineering&trade;</a>
               <a href="${SITE.hyperAgile.consulting}" target="_blank" rel="noopener noreferrer">Consulting</a>
             </div>
@@ -201,7 +202,6 @@
               <a href="${prefix}books-media/">All Books</a>
               <a href="${SITE.hyperAgile.book}" target="_blank" rel="noopener noreferrer">Hyper-Agile Testing</a>
               <a href="${SITE.hyperAgile.home}" target="_blank" rel="noopener noreferrer">Hyper-Agile Quality Engineering&trade;</a>
-              <a href="${prefix}books-media/#media">Media &amp; Shows</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Learning Apps</h4>
@@ -214,16 +214,18 @@
               <h4>Carunel</h4>
               <a href="${prefix}about/">About</a>
               <a href="${prefix}contact/">Contact</a>
+              <a href="${prefix}privacy/">Privacy</a>
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
+              <a href="https://www.linkedin.com/in/eugenetkachenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="https://www.facebook.com/carunelstudio" target="_blank" rel="noopener noreferrer">Facebook</a>
               <a href="https://www.instagram.com/carunelstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
         </div>
         <div class="site-footer__bottom">
-          <p class="site-footer__attribution">Hyper-Agile Quality Engineering&trade; was created by Evgeny Tkachenko. Organizational consulting, implementation support, workshops, and training are offered by ${SITE.legalName}.</p>
+          <p class="site-footer__attribution">Evgeny Tkachenko is the originator of Hyper-Agile Quality Engineering&trade;. Organizational consulting, implementation support, workshops, and training are offered by ${SITE.legalName}.</p>
           <span class="site-footer__copyright">&copy; ${year} ${SITE.legalName}. All rights reserved.</span>
         </div>
       </div>
@@ -394,6 +396,245 @@
     });
   }
 
+  /* --- Inquiry Form (Contact page) --- */
+  // Formspree-powered form, progressively mounted only when a public form
+  // ID is configured (see js/config.js / .env.example). If unconfigured,
+  // the mount stays empty rather than rendering a form with nowhere to
+  // submit — the "Email Carunel Directly" link on the page is the fallback.
+  const INQUIRY_TYPES = [
+    'Organizational Consulting',
+    'Workshops & Training',
+    'Books & Publishing',
+    'Speaking & Media',
+    'Partnerships',
+    'Learning App Support',
+    'Other'
+  ];
+
+  const WARNING_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+
+  function getFormspreeFormId() {
+    return (window.CARUNEL_CONFIG && window.CARUNEL_CONFIG.FORMSPREE_FORM_ID) || '';
+  }
+
+  function renderInquiryForm(formId) {
+    const options = INQUIRY_TYPES
+      .map((type) => `<option value="${type}">${type}</option>`)
+      .join('');
+    return `
+      <form class="inquiry-form" id="carunel-inquiry-form" novalidate action="https://formspree.io/f/${formId}" method="POST">
+        <div id="cf-summary" class="form-summary" role="alert" hidden></div>
+
+        <div class="form-row">
+          <label class="form-label" for="cf-name">Name <span class="form-required" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <input class="form-input" type="text" id="cf-name" name="name" autocomplete="name" required aria-describedby="cf-name-error" aria-invalid="false">
+          <p class="form-error" id="cf-name-error" hidden></p>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="cf-email">Email <span class="form-required" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <input class="form-input" type="email" id="cf-email" name="email" autocomplete="email" required aria-describedby="cf-email-error" aria-invalid="false">
+          <p class="form-error" id="cf-email-error" hidden></p>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="cf-organization">Organization <span class="form-optional">(optional)</span></label>
+          <input class="form-input" type="text" id="cf-organization" name="organization" autocomplete="organization">
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="cf-inquiry-type">Inquiry type <span class="form-required" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <select class="form-input" id="cf-inquiry-type" name="inquiryType" required aria-describedby="cf-inquiry-type-error" aria-invalid="false">
+            <option value="">Choose one&hellip;</option>
+            ${options}
+          </select>
+          <p class="form-error" id="cf-inquiry-type-error" hidden></p>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="cf-message">Message <span class="form-required" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <textarea class="form-input" id="cf-message" name="message" rows="5" required aria-describedby="cf-message-error" aria-invalid="false"></textarea>
+          <p class="form-error" id="cf-message-error" hidden></p>
+        </div>
+
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="cf-company">Leave this field empty</label>
+          <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div id="cf-status" class="form-status" role="status" aria-live="polite"></div>
+
+        <button type="submit" class="btn btn--primary" id="cf-submit">Send Message</button>
+      </form>
+    `;
+  }
+
+  const INQUIRY_FIELD_VALIDATORS = {
+    'cf-name': (value) => (value.trim() ? '' : 'Please enter your name.'),
+    'cf-email': (value) => {
+      const trimmed = value.trim();
+      if (!trimmed) return 'Please enter your email address.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return 'Please enter a valid email address.';
+      return '';
+    },
+    'cf-inquiry-type': (value) => (value ? '' : 'Please choose an inquiry type.'),
+    'cf-message': (value) => (value.trim() ? '' : 'Please enter a message.')
+  };
+
+  function setInquiryFieldError(field, message) {
+    const errorEl = document.getElementById(field.getAttribute('aria-describedby'));
+    if (message) {
+      field.setAttribute('aria-invalid', 'true');
+      if (errorEl) {
+        errorEl.innerHTML = WARNING_ICON + `<span>${message}</span>`;
+        errorEl.hidden = false;
+      }
+    } else {
+      field.setAttribute('aria-invalid', 'false');
+      if (errorEl) {
+        errorEl.innerHTML = '';
+        errorEl.hidden = true;
+      }
+    }
+  }
+
+  function validateInquiryField(field) {
+    const validator = INQUIRY_FIELD_VALIDATORS[field.id];
+    if (!validator) return true;
+    const message = validator(field.value);
+    setInquiryFieldError(field, message);
+    return !message;
+  }
+
+  function initInquiryForm() {
+    const mount = document.querySelector('[data-inquiry-form]');
+    if (!mount) return;
+
+    const formId = getFormspreeFormId();
+    if (!formId) {
+      // Unconfigured: leave the mount empty rather than render a form with
+      // nowhere to submit. Only note this locally — never in production.
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        console.info('[Carunel] FORMSPREE_FORM_ID is not set in js/config.js — the inquiry form is hidden. The direct-email option on this page still works.');
+      }
+      return;
+    }
+
+    mount.outerHTML = renderInquiryForm(formId);
+
+    const form = document.getElementById('carunel-inquiry-form');
+    if (!form) return;
+
+    const summary = document.getElementById('cf-summary');
+    const status = document.getElementById('cf-status');
+    const submitBtn = document.getElementById('cf-submit');
+    const fieldIds = ['cf-name', 'cf-email', 'cf-inquiry-type', 'cf-message'];
+    let submitting = false;
+    let attempted = false;
+
+    fieldIds.forEach((id) => {
+      const field = document.getElementById(id);
+      ['input', 'change'].forEach((evt) => {
+        field.addEventListener(evt, () => {
+          if (attempted) validateInquiryField(field);
+        });
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (submitting) return;
+
+      attempted = true;
+      let firstInvalid = null;
+      fieldIds.forEach((id) => {
+        const field = document.getElementById(id);
+        const valid = validateInquiryField(field);
+        if (!valid && !firstInvalid) firstInvalid = field;
+      });
+
+      if (firstInvalid) {
+        summary.innerHTML = WARNING_ICON + '<span>Please correct the highlighted fields below.</span>';
+        summary.hidden = false;
+        firstInvalid.focus();
+        return;
+      }
+
+      summary.hidden = true;
+      summary.innerHTML = '';
+
+      submitting = true;
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = 'Sending…';
+      status.removeAttribute('data-state');
+      status.textContent = '';
+
+      const payload = {
+        name: document.getElementById('cf-name').value.trim(),
+        email: document.getElementById('cf-email').value.trim(),
+        organization: document.getElementById('cf-organization').value.trim(),
+        inquiryType: document.getElementById('cf-inquiry-type').value,
+        message: document.getElementById('cf-message').value.trim(),
+        _gotcha: document.getElementById('cf-company').value
+      };
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      })
+        .then((response) => {
+          if (response.ok) {
+            form.reset();
+            fieldIds.forEach((id) => setInquiryFieldError(document.getElementById(id), ''));
+            attempted = false;
+            status.setAttribute('data-state', 'success');
+            status.textContent = "Thank you — your message has been sent. We'll respond within a few business days.";
+          } else {
+            status.setAttribute('data-state', 'error');
+            status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at business@carunel.com.';
+          }
+        })
+        .catch(() => {
+          status.setAttribute('data-state', 'error');
+          status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at business@carunel.com.';
+        })
+        .finally(() => {
+          clearTimeout(timeoutId);
+          submitting = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        });
+    });
+  }
+
+  /* --- Copy Email Button --- */
+  function initCopyEmail() {
+    document.querySelectorAll('[data-copy-email]').forEach((btn) => {
+      const label = btn.querySelector('.copy-email-btn__label');
+      const email = btn.getAttribute('data-copy-email');
+      let resetTimer = null;
+
+      btn.addEventListener('click', () => {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+        navigator.clipboard.writeText(email).then(() => {
+          if (label) label.textContent = 'Copied';
+          btn.setAttribute('aria-label', `Copied ${email} to clipboard`);
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(() => {
+            if (label) label.textContent = 'Copy';
+            btn.setAttribute('aria-label', `Copy email address ${email}`);
+          }, 2000);
+        }).catch(() => {});
+      });
+    });
+  }
+
   /* --- Scroll Reveal --- */
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
@@ -428,6 +669,8 @@
     renderFooter();
     initStoreBadges();
     initBooks();
+    initInquiryForm();
+    initCopyEmail();
     initReveal();
   });
 })();

@@ -17,6 +17,7 @@ A static multi-page website for **Carunel LLC** — learning apps (Beadwell, Gen
 | `/gentleclover` | `gentleclover/index.html` | GentleClover product page |
 | `/quizwell` | `quizwell/index.html` | QuizWell product page |
 | `/contact` | `contact/index.html` | Contact page |
+| `/privacy` | `privacy/index.html` | Website privacy policy |
 
 Organizational consulting, the framework, and the book live in full detail on [hyperagiletesting.com](https://hyperagiletesting.com/); Carunel's pages summarize and link out rather than duplicate that content.
 
@@ -57,6 +58,20 @@ All design tokens (colors, spacing, typography, radii) are CSS custom properties
 ### Header and footer
 The header and footer are shared components rendered by `js/main.js`. Edit the `renderHeader()` and `renderFooter()` functions to change navigation links or footer content.
 
+### Contact form (Formspree)
+The Contact page's inquiry form is powered by [Formspree](https://formspree.io) and only renders when a form ID is configured — see `.env.example` for the `FORMSPREE_FORM_ID` variable.
+
+This is a static site with no build step, so there's no automatic environment-variable injection. To enable the form:
+
+1. Create a form at [formspree.io](https://formspree.io) and copy its form ID.
+2. Set it in `js/config.js`:
+   ```js
+   window.CARUNEL_CONFIG = { FORMSPREE_FORM_ID: 'your-form-id' };
+   ```
+3. Deploy as usual.
+
+If `FORMSPREE_FORM_ID` is left empty, the form simply doesn't render — the "Email Carunel Directly" link on the Contact page is always shown regardless, so contact is never broken. If a build step is introduced later (e.g. a GitHub Actions workflow), `FORMSPREE_FORM_ID` should be wired through a workflow secret that templates the value into `js/config.js` at deploy time, rather than committing a real form ID.
+
 ## Deploying to GitHub Pages
 
 ### Option 1: Deploy from `main` branch root
@@ -89,7 +104,8 @@ The site uses relative paths (`css/styles.css`, `../js/main.js`) so it works cor
 ├── products/index.html     # Learning apps
 ├── organizations/index.html # For Organizations (Hyper-Agile Quality Engineering™)
 ├── books-media/index.html  # Books & Media
-├── contact/index.html      # Contact
+├── contact/index.html      # Contact (includes the Formspree inquiry form)
+├── privacy/index.html      # Website privacy policy
 ├── beadwell/, gentleclover/, quizwell/
 │   ├── index.html          # Product page
 │   ├── privacy/index.html  # Privacy Policy
@@ -97,11 +113,13 @@ The site uses relative paths (`css/styles.css`, `../js/main.js`) so it works cor
 ├── css/
 │   └── styles.css          # All styles
 ├── js/
-│   └── main.js             # Shared components, site-wide config & scripts
+│   ├── main.js              # Shared components, site-wide config & scripts
+│   └── config.js            # Local runtime config (Formspree form ID)
 ├── assets/
 │   └── images/             # Product screenshots & icons
 ├── sitemap.xml
 ├── robots.txt
+├── .env.example
 └── README.md
 ```
 

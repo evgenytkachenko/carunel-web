@@ -11,11 +11,14 @@
   <meta property="og:url" content="https://carunel.com/">
   <meta property="og:title" content="Carunel | Quality Engineering Consulting, Books & Learning Apps">
   <meta property="og:description" content="Carunel helps organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, books, and professional learning.">
-  <meta property="og:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://carunel.com/assets/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Carunel — Curiosity. Clarity. Confidence.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Carunel | Quality Engineering Consulting, Books & Learning Apps">
   <meta name="twitter:description" content="Carunel helps organizations strengthen Quality Engineering, AI-assisted delivery, and release confidence through consulting, practical frameworks, workshops, books, and professional learning.">
-  <meta name="twitter:image" content="https://carunel.com/assets/images/carunel-favicon-180.png">
+  <meta name="twitter:image" content="https://carunel.com/assets/images/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -39,6 +42,8 @@
   </script>
 </head>
 <body>
+
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
   <!-- Header and footer injected by main.js -->
 
   <style>
@@ -129,37 +134,52 @@
     .work-card__link--terracotta { color: var(--accent-terracotta); }
     .work-card__link--charcoal { color: var(--text-primary); }
     .work-card__link--gold { color: var(--accent-gold); }
-    /* Compact Learning Apps row */
+    /* Learning Apps row — clickable cards, sized to feel intentional */
     .app-mini-row {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-xl);
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
       margin: var(--space-xl) 0;
     }
     .app-mini {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-sm);
+      text-align: center;
+      gap: var(--space-xs);
       text-decoration: none;
-      transition: transform var(--transition-fast);
+      background-color: var(--bg-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) var(--space-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
     }
     .app-mini:hover {
       transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
     .app-mini__icon {
-      width: 76px;
-      height: 76px;
+      width: 110px;
+      height: 110px;
       border-radius: var(--radius-lg);
       object-fit: cover;
       box-shadow: var(--shadow-sm);
       display: block;
+      margin-bottom: var(--space-xs);
     }
     .app-mini__name {
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-family: 'DM Serif Display', 'Georgia', serif;
+      font-size: 1.2rem;
       color: var(--text-primary);
+    }
+    .app-mini__benefit {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 220px;
+    }
+    @media (max-width: 768px) {
+      .app-mini-row { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
     }
   </style>
 
@@ -202,7 +222,7 @@
       <div class="section-header reveal">
         <h2>One company. Three ways to build confidence.</h2>
         <div class="divider divider--center"></div>
-        <p>Our work serves different audiences&mdash;organizations, professionals, and families&mdash;but it shares one purpose: turning expertise into practical, trustworthy confidence.</p>
+        <p>Carunel serves organizations, professionals, and families through different kinds of work, united by the same principles: curiosity, clarity, practical learning, and trust.</p>
       </div>
       <div class="grid grid--3 reveal-stagger">
         <div class="card work-card reveal">
@@ -234,15 +254,12 @@
         <p>Carunel LLC helps organizations reduce uncertainty earlier by connecting product intent, risk, validation, automation, release readiness, and production learning into one coherent operating model.</p>
       </div>
       <ul class="org-list reveal mt-lg">
-        <li>Quality Engineering operating-model assessment</li>
-        <li>Hyper-Agile Quality Engineering&trade; adoption and implementation</li>
-        <li>AI-accelerated delivery readiness</li>
-        <li>Risk-based validation strategy</li>
-        <li>Automation and continuous quality-signal strategy</li>
-        <li>Change-impact and regression focus</li>
-        <li>Release-confidence and readiness assessment</li>
-        <li>Production feedback and organizational learning</li>
-        <li>Leadership working sessions, workshops, and training</li>
+        <li>Connect product intent with clear test expectations.</li>
+        <li>Focus validation on risk and change impact.</li>
+        <li>Strengthen automation and continuous quality signals.</li>
+        <li>Improve release-readiness decisions.</li>
+        <li>Learn systematically from production feedback.</li>
+        <li>Build shared ownership across product, engineering, and quality.</li>
       </ul>
       <p class="reveal mt-lg text-sm" style="text-align: center; max-width: 560px; margin-left: auto; margin-right: auto; color: var(--text-on-charcoal-secondary);">Organizational consulting, implementation support, workshops, and training are offered by Carunel LLC.</p>
       <div class="btn-group mt-lg" style="justify-content: center;">
@@ -278,10 +295,9 @@
         <div class="founder-mark" aria-hidden="true">ET</div>
         <div>
           <h2 class="label-mono">Founded by Evgeny Tkachenko</h2>
-          <p style="margin-top: var(--space-sm); font-size: 1rem; line-height: 1.8; max-width: 620px;">Evgeny Tkachenko is CEO of Carunel LLC, a software engineering and quality leader with more than twenty years of experience, speaker, and creator of the Hyper-Agile Quality Engineering&trade; framework and Hyper-Agile Quality Loop. He is the author of three books on Quality Engineering, AI-powered applications, and AI-accelerated software delivery, including the forthcoming Apress book <em>Hyper-Agile Testing</em>.</p>
+          <p style="margin-top: var(--space-sm); font-size: 1rem; line-height: 1.8; max-width: 620px;">Evgeny Tkachenko is the founder of Carunel LLC, a software engineering and quality leader with more than twenty years of experience, author, speaker, and originator of the Hyper-Agile Quality Engineering&trade; framework and Hyper-Agile Quality Loop. He is the author of three books on Quality Engineering, AI-powered applications, and AI-accelerated software delivery, including the forthcoming Apress book <em>Hyper-Agile Testing</em>.</p>
           <div class="btn-group mt-md">
-            <a href="about/" class="btn btn--secondary btn--sm">About Evgeny and Carunel</a>
-            <a href="books-media/" class="btn btn--secondary btn--sm">View All Books</a>
+            <a href="about/" class="btn btn--secondary btn--sm">About Evgeny</a>
             <a href="https://hyperagiletesting.com/" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Visit Hyper-Agile Testing <span class="sr-only">(opens hyperagiletesting.com)</span></a>
           </div>
         </div>
@@ -300,16 +316,19 @@
       </div>
       <div class="app-mini-row reveal-stagger">
         <a href="beadwell/" class="app-mini reveal">
-          <img src="assets/images/beadwell-product-card.png" alt="" class="app-mini__icon">
+          <img src="assets/images/beadwell-icon.png" alt="" class="app-mini__icon">
           <span class="app-mini__name">Beadwell</span>
+          <span class="app-mini__benefit">Calm, Montessori-aligned math practice for ages 5&ndash;9.</span>
         </a>
         <a href="gentleclover/" class="app-mini reveal">
           <img src="assets/images/gentleclover_calm_playtime_essentials.png" alt="" class="app-mini__icon">
           <span class="app-mini__name">GentleClover</span>
+          <span class="app-mini__benefit">Calm, offline activities for ages 3 and up.</span>
         </a>
         <a href="quizwell/" class="app-mini reveal">
-          <img src="assets/images/quizwell-product-card.png" alt="" class="app-mini__icon">
+          <img src="assets/images/quizwell-logo.png" alt="" class="app-mini__icon">
           <span class="app-mini__name">QuizWell</span>
+          <span class="app-mini__benefit">Calm, parent-guided quiz practice for ages 5&ndash;10.</span>
         </a>
       </div>
       <div class="reveal" style="text-align: center;">
@@ -322,10 +341,9 @@
   <section class="section section--cream">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Learning begins with curiosity.</h2>
+        <h2>Curiosity Creates Clarity. Clarity Builds Confidence.</h2>
         <div class="divider divider--center"></div>
-        <p>Curiosity is the foundation of everything Carunel builds&mdash;from Quality Engineering frameworks and organizational consulting to calm, privacy-conscious learning apps for children and families.</p>
-        <p class="mt-md">Whether we're helping an engineering team reduce release risk or helping a child discover mathematics, our goal remains the same: help people ask better questions, test ideas, and understand how the world around them works.</p>
+        <p>Across Quality Engineering, professional learning, books, and children's products, Carunel helps people ask better questions, apply what they learn, and make confident decisions.</p>
       </div>
     </div>
   </section>
