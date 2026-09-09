@@ -433,6 +433,15 @@
 
   const WARNING_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
+  // Turns an INQUIRY_TYPES label into the URL-friendly slug used by the
+  // `?type=` query param (e.g. cross-page CTAs like "Discuss an
+  // Organizational Engagement" linking to /contact/?type=organizational-
+  // consulting#inquiry-form). Derived from INQUIRY_TYPES rather than a
+  // separate hardcoded map, so it can't drift out of sync with it.
+  function slugifyInquiryType(label) {
+    return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
   function getFormspreeFormId() {
     return (window.CARUNEL_CONFIG && window.CARUNEL_CONFIG.FORMSPREE_FORM_ID) || '';
   }
@@ -563,6 +572,17 @@
 
     const form = document.getElementById('carunel-inquiry-form');
     if (!form) return;
+
+    // Pre-select the inquiry type when arriving via a `?type=<slug>` link
+    // (see the "Discuss an Organizational Engagement" CTAs on the
+    // homepage and /organizations/), so visitors don't have to repeat a
+    // choice they've effectively already made by clicking that CTA.
+    const requestedType = new URLSearchParams(location.search).get('type');
+    if (requestedType) {
+      const typeSelect = document.getElementById('cf-inquiry-type');
+      const match = INQUIRY_TYPES.find((label) => slugifyInquiryType(label) === requestedType);
+      if (typeSelect && match) typeSelect.value = match;
+    }
 
     const summary = document.getElementById('cf-summary');
     const status = document.getElementById('cf-status');
