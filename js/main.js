@@ -69,6 +69,8 @@
       author: 'Evgeny Tkachenko',
       year: 2024,
       status: 'published',
+      coverImage: 'assets/images/navigating-quality-engineering-cover.jpg',
+      coverImageAlt: 'Navigating Quality Engineering in the AI Era: Key Insights for Modern Quality Engineering and Management, by Evgeny Tkachenko.',
       description: 'A practical examination of how artificial intelligence, automation, DevOps, and changing delivery expectations are reshaping Quality Engineering roles, practices, and leadership.',
       amazonUrl: 'https://www.amazon.com/Navigating-Quality-Engineering-Era-Management/dp/B0D9PGJ6HB'
     },
@@ -79,6 +81,8 @@
       author: 'Evgeny Tkachenko',
       year: 2024,
       status: 'published',
+      coverImage: 'assets/images/testing-ai-powered-applications-cover.jpg',
+      coverImageAlt: 'Testing AI-Powered Applications: Ensuring Quality in the Age of Intelligent Software, by Evgeny Tkachenko.',
       description: 'A focused guide to testing AI-powered systems, including strategies for evaluating accuracy, robustness, interpretability, fairness, data variability, model uncertainty, and responsible AI quality.',
       amazonUrl: 'https://www.amazon.com/Testing-AI-Powered-Applications-Ensuring-Intelligent/dp/B0DJSPTX4J'
     }
