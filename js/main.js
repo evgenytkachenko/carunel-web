@@ -729,14 +729,34 @@
      never runs, errors out, or hasn't executed yet (including in
      automated screenshots taken before scripting completes). */
   function initReveal() {
-    const els = document.querySelectorAll('.reveal');
+    const els = Array.from(document.querySelectorAll('.reveal'));
     if (!els.length) return;
 
     // IntersectionObserver isn't supported: leave .reveal-enabled off so
     // everything stays at its visible default.
     if (!('IntersectionObserver' in window)) return;
 
+    // Elements already on screen at init time (e.g. above-the-fold hero
+    // content, or anything in view because JS hydrated late and the visitor
+    // is already looking at the page) are marked .revealed *before*
+    // .reveal-enabled is added, in the same synchronous pass. Both classes
+    // land before the browser's next paint, so there is no in-between frame
+    // where already-visible content flashes to opacity: 0 — the only thing
+    // that ever paints hidden is content that was genuinely off-screen.
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const toObserve = [];
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        el.classList.add('revealed');
+      } else {
+        toObserve.push(el);
+      }
+    });
+
     document.documentElement.classList.add('reveal-enabled');
+
+    if (!toObserve.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -750,7 +770,7 @@
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
 
-    els.forEach((el) => observer.observe(el));
+    toObserve.forEach((el) => observer.observe(el));
 
     // Safety net: a section that is never scrolled into view (e.g. an
     // automated full-page capture taken without scrolling) would otherwise
@@ -760,7 +780,7 @@
     // actively scrolling will already have triggered the natural reveal
     // well before this fires.
     window.setTimeout(() => {
-      els.forEach((el) => el.classList.add('revealed'));
+      toObserve.forEach((el) => el.classList.add('revealed'));
       observer.disconnect();
     }, 1200);
   }
