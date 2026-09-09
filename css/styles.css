@@ -1012,6 +1012,87 @@ p {
   flex-shrink: 0;
 }
 
+/* --- Inquiry Form wrap: cross-fades between the form and a success
+   card on submission, instead of leaving an emptied, still-submittable
+   form next to a small status line. Both children are stacked in the
+   same grid cell so the swap doesn't jump the layout; visibility is
+   delayed on fade-out so the hidden one leaves the tab order only once
+   its opacity transition finishes. The site-wide
+   prefers-reduced-motion rule (transition-duration: 0.01ms !important)
+   already collapses this to an instant swap for that case. --- */
+.inquiry-form-wrap {
+  display: grid;
+}
+
+.inquiry-form-wrap > .inquiry-form,
+.inquiry-form-wrap > .inquiry-success {
+  grid-area: 1 / 1;
+}
+
+.inquiry-form-wrap > .inquiry-form {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.inquiry-form-wrap > .inquiry-success {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  pointer-events: none;
+}
+
+.inquiry-form-wrap[data-inquiry-state="success"] > .inquiry-form {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  pointer-events: none;
+}
+
+.inquiry-form-wrap[data-inquiry-state="success"] > .inquiry-success {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.inquiry-success {
+  background-color: var(--bg-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.inquiry-success:focus-visible {
+  outline: none;
+}
+
+.inquiry-success__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--accent-sage);
+  margin: 0 auto var(--space-sm);
+}
+
+.inquiry-success__heading {
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.inquiry-success__text {
+  margin-top: var(--space-xs);
+  color: var(--text-secondary);
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inquiry-success .btn {
+  margin-top: var(--space-md);
+}
+
 /* --- Inquiry Form --- */
 .inquiry-form {
   background-color: var(--bg-white);

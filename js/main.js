@@ -451,6 +451,7 @@
       .map((type) => `<option value="${type}">${type}</option>`)
       .join('');
     return `
+      <div class="inquiry-form-wrap reveal" id="cf-form-wrap" data-inquiry-state="form">
       <form class="inquiry-form" id="carunel-inquiry-form" novalidate action="https://formspree.io/f/${formId}" method="POST">
         <div id="cf-summary" class="form-summary" role="alert" hidden></div>
 
@@ -495,6 +496,14 @@
 
         <button type="submit" class="btn btn--primary" id="cf-submit">Send Message</button>
       </form>
+
+      <div class="inquiry-success" id="cf-success" role="status" aria-live="polite" tabindex="-1">
+        <svg class="inquiry-success__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+        <p class="inquiry-success__heading">Message sent</p>
+        <p class="inquiry-success__text" id="cf-success-text"></p>
+        <button type="button" class="btn btn--secondary btn--sm" id="cf-send-another">Send another message &rarr;</button>
+      </div>
+      </div>
     `;
   }
 
@@ -584,12 +593,24 @@
       if (typeSelect && match) typeSelect.value = match;
     }
 
+    const wrap = document.getElementById('cf-form-wrap');
     const summary = document.getElementById('cf-summary');
     const status = document.getElementById('cf-status');
     const submitBtn = document.getElementById('cf-submit');
+    const successEl = document.getElementById('cf-success');
+    const successText = document.getElementById('cf-success-text');
+    const sendAnotherBtn = document.getElementById('cf-send-another');
     const fieldIds = ['cf-name', 'cf-email', 'cf-inquiry-type', 'cf-message'];
     let submitting = false;
     let attempted = false;
+
+    if (sendAnotherBtn) {
+      sendAnotherBtn.addEventListener('click', () => {
+        wrap.setAttribute('data-inquiry-state', 'form');
+        successText.textContent = '';
+        document.getElementById('cf-name').focus();
+      });
+    }
 
     fieldIds.forEach((id) => {
       const field = document.getElementById(id);
@@ -652,8 +673,14 @@
             form.reset();
             fieldIds.forEach((id) => setInquiryFieldError(document.getElementById(id), ''));
             attempted = false;
-            status.setAttribute('data-state', 'success');
-            status.textContent = "Thank you — your message has been sent. We'll respond within a few business days.";
+            // Swap the form out for a confirmation card rather than
+            // leaving an emptied, still-submittable form on screen next
+            // to a small status line — the animated cross-fade is CSS
+            // only (see .inquiry-form-wrap in styles.css) and collapses
+            // to an instant swap under prefers-reduced-motion.
+            successText.textContent = "Thank you — your message has been sent. We'll respond within a few business days.";
+            wrap.setAttribute('data-inquiry-state', 'success');
+            successEl.focus();
           } else {
             status.setAttribute('data-state', 'error');
             status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at business@carunel.com.';
