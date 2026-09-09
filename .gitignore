@@ -14,3 +14,7 @@ beadwell-memory/
 .vscode/
 .idea/
 *.swp
+
+# Build output (see build.js) — generated, not committed
+/dist/
+node_modules/

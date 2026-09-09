@@ -38,14 +38,12 @@
 </head>
 <body>
 
-  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
-
   <!-- Page Hero -->
   <section class="hero" style="background-color: var(--bg-cream); padding-bottom: var(--space-lg);">
     <div class="container container--narrow">
       <div style="text-align: center; max-width: 640px; margin: 0 auto;">
         <span class="label-mono">Contact</span>
-        <h1 style="margin-top: var(--space-sm);">Start a conversation.</h1>
+        <h1 style="margin-top: var(--space-sm);">Start a Conversation</h1>
         <div class="divider divider--center"></div>
         <p style="margin: 0 auto;">Whether you are exploring an organizational engagement, interested in a partnership, book, media project, or speaking opportunity, or looking for learning app support, choose the most relevant starting point below.</p>
       </div>
@@ -55,6 +53,10 @@
   <!-- Inquiry Cards -->
   <section class="section" style="padding-top: var(--space-md);">
     <div class="container">
+      <div class="section-header reveal" style="text-align: center; margin-bottom: var(--space-lg);">
+        <h2>Choose an Inquiry Type</h2>
+        <div class="divider divider--center"></div>
+      </div>
       <div class="grid grid--3 reveal-stagger">
         <div class="inquiry-card reveal">
           <span class="contact-card__label">Organizational consulting</span>
@@ -90,9 +92,9 @@
     <div class="container container--narrow">
       <div class="section-header reveal" style="text-align: left; margin-bottom: var(--space-lg);">
         <span class="label-mono">Send a message</span>
-        <h2 style="margin-top: var(--space-sm);">Start a general inquiry.</h2>
+        <h2 style="margin-top: var(--space-sm);" data-inquiry-heading>Contact Carunel Directly</h2>
         <div class="divider"></div>
-        <p style="margin: 0;">Prefer not to use a form? Email us directly — both reach the same inbox.</p>
+        <p style="margin: 0;" data-inquiry-subtext>Email us directly below — we typically respond within a few business days.</p>
       </div>
 
       <div class="contact-layout reveal">
@@ -111,7 +113,7 @@
         </div>
       </div>
 
-      <p class="text-sm text-tertiary mt-lg reveal" style="max-width: 640px;">Submitting the form sends the information you enter to Formspree for delivery to Carunel. See our <a href="../privacy/" style="color: var(--accent-terracotta);">Privacy Policy</a> for details.</p>
+      <p class="text-sm text-tertiary mt-lg reveal" data-inquiry-acknowledgment hidden style="max-width: 640px;">Submitting the form sends the information you enter to Formspree for delivery to Carunel. See our <a href="../privacy/" style="color: var(--accent-terracotta);">Privacy Policy</a> for details.</p>
     </div>
   </section>
 
@@ -119,7 +121,7 @@
   <section class="section--sm section--cream" style="padding: var(--space-xl) 0;">
     <div class="container container--narrow">
       <div class="section-header reveal">
-        <h2>Common questions</h2>
+        <h2>Common Questions</h2>
         <div class="divider divider--center"></div>
       </div>
       <div class="reveal-stagger">

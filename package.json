@@ -1,0 +1,9 @@
+{
+  "name": "carunel-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carunel LLC website — static HTML/CSS/JS with a small build step that injects the public FORMSPREE_FORM_ID into js/config.js for deploys.",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

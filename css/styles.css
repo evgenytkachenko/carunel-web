@@ -1284,6 +1284,19 @@ textarea.form-input {
   color: var(--text-on-charcoal-secondary);
 }
 
+.book-card__cover--photo {
+  padding: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.book-card__cover--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Earlier-books grid: compact, equal-height supporting cards */
 .book-grid {
   display: grid;
@@ -1405,6 +1418,17 @@ textarea.form-input {
   flex-shrink: 0;
 }
 
+.founder-mark--photo {
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.founder-mark--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .founder-row {
   display: flex;
   gap: var(--space-lg);
@@ -1430,16 +1454,26 @@ textarea.form-input {
   }
 }
 
-/* --- Scroll Reveal Animation --- */
+/* --- Scroll Reveal Animation ---
+   Progressive enhancement: .reveal content is visible by default so it
+   never depends on JavaScript to be seen. The hidden pre-animation state
+   only applies once js/main.js confirms the reveal observer initialized
+   and adds .reveal-enabled to <html> (see initReveal). If JavaScript
+   fails, is disabled, or hasn't run yet, content simply stays visible. */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-enabled .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(16px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.revealed {
+.reveal-enabled .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Stagger children */
@@ -1618,9 +1652,10 @@ textarea.form-input {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal {
+  .reveal-enabled .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
   }
   html {
     scroll-behavior: auto;
@@ -1629,7 +1664,8 @@ textarea.form-input {
 
 /* Printed pages must show full content, not mid-animation state */
 @media print {
-  .reveal {
+  .reveal,
+  .reveal-enabled .reveal {
     opacity: 1 !important;
     transform: none !important;
   }

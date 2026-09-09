@@ -61,34 +61,61 @@ The header and footer are shared components rendered by `js/main.js`. Edit the `
 ### Contact form (Formspree)
 The Contact page's inquiry form is powered by [Formspree](https://formspree.io) and only renders when a form ID is configured — see `.env.example` for the `FORMSPREE_FORM_ID` variable.
 
-This is a static site with no build step, so there's no automatic environment-variable injection. To enable the form:
+If `FORMSPREE_FORM_ID` is unset, the form simply doesn't render: the Contact page shows a "Contact Carunel Directly" heading and the direct-email option instead, and never mentions a form that isn't there. The "Email Carunel Directly" option is always shown regardless of this setting, so contact is never broken.
 
-1. Create a form at [formspree.io](https://formspree.io) and copy its form ID.
-2. Set it in `js/config.js`:
-   ```js
-   window.CARUNEL_CONFIG = { FORMSPREE_FORM_ID: 'your-form-id' };
-   ```
-3. Deploy as usual.
+**Local editing without a build.** The site's HTML/CSS/JS still need no build step at all for everyday editing — a plain static file server works. To try the form locally, copy your form ID directly into `js/config.js`:
+```js
+window.CARUNEL_CONFIG = { FORMSPREE_FORM_ID: 'your-form-id' };
+```
 
-If `FORMSPREE_FORM_ID` is left empty, the form simply doesn't render — the "Email Carunel Directly" link on the Contact page is always shown regardless, so contact is never broken. If a build step is introduced later (e.g. a GitHub Actions workflow), `FORMSPREE_FORM_ID` should be wired through a workflow secret that templates the value into `js/config.js` at deploy time, rather than committing a real form ID.
+**GitHub Pages deploys** use `build.js` (via `npm run build`) to inject `FORMSPREE_FORM_ID` into `js/config.js` at deploy time, so a real form ID never has to be hand-edited or committed. To configure it:
+
+1. Open **Settings > Secrets and variables > Actions**.
+2. Select the **Variables** tab.
+3. Create a variable named `FORMSPREE_FORM_ID`.
+4. Set its value to the Formspree form ID only, not the full URL (e.g. `mrpgrenq`, not `https://formspree.io/f/mrpgrenq`).
+5. Run the GitHub Pages deployment again (push to `main`, or re-run the workflow from the Actions tab).
+
+The Formspree ID is not confidential — it's publicly visible in the generated browser code by design — but it's still set as a repository **variable** (`vars.FORMSPREE_FORM_ID`), not a secret, since GitHub secrets are deliberately unavailable to read back out of a workflow run.
+
+For local verification, build once with the ID and once without:
+```bash
+FORMSPREE_FORM_ID=your-form-id npm run build   # configured build
+npm run build                                   # unconfigured build
+```
+Each run writes to `dist/`; serve that directory with any static file server to check the result (see "Running locally" above, pointed at `dist/` instead of the repo root).
 
 ## Deploying to GitHub Pages
 
-### Option 1: Deploy from `main` branch root
+### Option 1: GitHub Actions (current — required for the Formspree form)
 
-1. Push this repository to GitHub
-2. Go to **Settings > Pages**
-3. Under "Source", select **Deploy from a branch**
-4. Choose `main` branch, `/ (root)` folder
-5. Click Save
+`.github/workflows/pages.yml` builds the site with `npm run build` (injecting `FORMSPREE_FORM_ID` from the repository variable of the same name — see "Contact form (Formspree)" above) and deploys the result with `actions/deploy-pages`.
+
+1. Push this repository to GitHub.
+2. Set the `FORMSPREE_FORM_ID` repository variable (see above) — optional; the site deploys and works without it, just with the inquiry form hidden.
+3. Go to **Settings > Pages**.
+4. Under "Source", select **GitHub Actions**.
+5. Push to `main` (or re-run the workflow from the **Actions** tab) to trigger a deploy.
 
 The site will be available at `https://<username>.github.io/<repo-name>/`.
 
-### Option 2: Custom domain
+### Option 2: Deploy from `main` branch root (no build, no Formspree form)
 
-1. Follow the steps above
-2. In **Settings > Pages**, add your custom domain under "Custom domain"
-3. Add a `CNAME` file to the repo root containing your domain (e.g., `carunel.com`)
+If you don't need the build step, the site still works served as-is:
+
+1. Push this repository to GitHub.
+2. Go to **Settings > Pages**.
+3. Under "Source", select **Deploy from a branch**.
+4. Choose `main` branch, `/ (root)` folder.
+5. Click Save.
+
+This serves the repository's checked-in `js/config.js` directly, so `FORMSPREE_FORM_ID` stays whatever is committed there (empty by default — the inquiry form stays hidden until you hand-edit that file, since there's no build step to inject a value).
+
+### Custom domain
+
+1. Follow either option above.
+2. In **Settings > Pages**, add your custom domain under "Custom domain".
+3. Add a `CNAME` file to the repo root containing your domain (e.g., `carunel.com`).
 4. Configure DNS with your domain registrar:
    - For apex domain: A records pointing to GitHub Pages IPs
    - For subdomain: CNAME record pointing to `<username>.github.io`
@@ -120,14 +147,17 @@ The site uses relative paths (`css/styles.css`, `../js/main.js`) so it works cor
 ├── sitemap.xml
 ├── robots.txt
 ├── .env.example
+├── build.js                # Build step: injects FORMSPREE_FORM_ID (see above)
+├── package.json
+├── .github/workflows/pages.yml  # GitHub Pages deploy (runs build.js)
 └── README.md
 ```
 
 ## Tech
 
-- Vanilla HTML, CSS, JavaScript
-- No build tools or dependencies
+- Vanilla HTML, CSS, JavaScript — no framework, no bundler
+- One small Node build script (`build.js`, no dependencies) used only by the GitHub Pages workflow to inject the public Formspree form ID; not required for local editing
 - Google Fonts (DM Sans + DM Serif Display)
 - Shared header/footer via JS injection
-- Scroll-reveal animations via IntersectionObserver
+- Scroll-reveal animations via IntersectionObserver, progressive enhancement (content is visible by default; see `.reveal` / `.reveal-enabled` in `css/styles.css` and `initReveal()` in `js/main.js`)
 - Responsive: desktop, tablet, mobile

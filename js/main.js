@@ -56,6 +56,8 @@
       year: null,
       status: 'forthcoming',
       coverEyebrow: 'Forthcoming from Apress',
+      coverImage: 'assets/images/hyper-agile-testing-cover.png',
+      coverImageAlt: 'Hyper-Agile Testing: Delivering Software in an AI-Accelerated World, by Evgeny Tkachenko, forthcoming from Apress.',
       description: 'A forthcoming Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.',
       exploreUrl: 'https://hyperagiletesting.com/book',
       amazonUrl: 'https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V'
@@ -218,7 +220,7 @@
             </div>
             <div class="site-footer__link-group">
               <h4>Follow</h4>
-              <a href="https://www.linkedin.com/in/eugenetkachenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/eugenetkachenko/" target="_blank" rel="noopener noreferrer" aria-label="Evgeny Tkachenko on LinkedIn">Evgeny on LinkedIn</a>
               <a href="https://www.facebook.com/carunelstudio" target="_blank" rel="noopener noreferrer">Facebook</a>
               <a href="https://www.instagram.com/carunelstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
@@ -310,11 +312,24 @@
   // Featured book: the flagship/forthcoming title, shown larger with a cover
   // and up to two CTAs (an "explore" link plus Amazon).
   // Usage: <div data-book-feature="hyper-agile-testing"></div>
-  function renderBookCover(book, small) {
+  function renderBookCover(book, small, prefix) {
     const eyebrow = book.coverEyebrow || (book.year ? String(book.year) : '');
     const eyebrowClass = small ? 'book-mini__cover-year' : 'book-card__cover-eyebrow';
     const titleClass = small ? 'book-mini__cover-title' : 'book-card__cover-title';
     const authorClass = small ? 'book-mini__cover-author' : 'book-card__cover-author';
+
+    // Prefer the approved cover image when one is available; fall back to
+    // the text-only mockup (used for books without cover art on file).
+    if (book.coverImage) {
+      const coverClass = small ? 'book-mini__cover' : 'book-card__cover book-card__cover--photo';
+      const alt = book.coverImageAlt || `${book.title} cover`;
+      return `
+        <div class="${coverClass}">
+          <img src="${(prefix || '') + book.coverImage}" alt="${alt}" loading="lazy">
+        </div>
+      `;
+    }
+
     const coverClass = small ? 'book-mini__cover' : 'book-card__cover';
     return `
       <div class="${coverClass}">
@@ -328,7 +343,7 @@
   // opts: { label, headingTag, headingText, headingStyle, divider } lets the
   // preview (homepage) and full (books-media) contexts each keep their own
   // heading level and copy while sharing one source of book data.
-  function renderFeaturedBook(book, opts) {
+  function renderFeaturedBook(book, opts, prefix) {
     opts = opts || {};
     const amazonLabel = book.amazonLabel || 'View on Amazon';
     const headingTag = opts.headingTag || 'h3';
@@ -345,7 +360,7 @@
     }
     return `
       <div class="book-card">
-        ${renderBookCover(book, false)}
+        ${renderBookCover(book, false, prefix)}
         <div>
           <span class="label-mono">${label}</span>
           <${headingTag}${headingClass} style="${headingStyle}">${headingText}</${headingTag}>
@@ -359,11 +374,11 @@
 
   // Earlier-books grid: compact, equal-height cards with a single Amazon CTA.
   // Usage: <div data-book-grid="earlier"></div>
-  function renderBookGridCard(book) {
+  function renderBookGridCard(book, prefix) {
     const fullTitle = book.subtitle ? `${book.title}: ${book.subtitle}` : book.title;
     return `
       <div class="book-mini">
-        ${renderBookCover(book, true)}
+        ${renderBookCover(book, true, prefix)}
         <h3 class="book-mini__title">${fullTitle}</h3>
         <p class="book-mini__meta">${book.author} &middot; ${book.year}</p>
         <p class="book-mini__text">${book.description}</p>
@@ -375,6 +390,7 @@
   }
 
   function initBooks() {
+    const prefix = rootPrefix();
     document.querySelectorAll('[data-book-feature]').forEach((mount) => {
       const book = BOOKS[mount.getAttribute('data-book-feature')];
       if (!book) return;
@@ -385,14 +401,14 @@
         headingText: mount.getAttribute('data-book-heading-text') || undefined,
         divider: mount.hasAttribute('data-book-divider')
       };
-      mount.outerHTML = renderFeaturedBook(book, opts);
+      mount.outerHTML = renderFeaturedBook(book, opts, prefix);
     });
     document.querySelectorAll('[data-book-grid]').forEach((mount) => {
       const group = mount.getAttribute('data-book-grid');
       const books = Object.keys(BOOKS)
         .filter((key) => BOOKS[key].group === group)
         .map((key) => BOOKS[key]);
-      mount.outerHTML = `<div class="book-grid">${books.map(renderBookGridCard).join('')}</div>`;
+      mount.outerHTML = `<div class="book-grid">${books.map((book) => renderBookGridCard(book, prefix)).join('')}</div>`;
     });
   }
 
@@ -510,15 +526,26 @@
     const mount = document.querySelector('[data-inquiry-form]');
     if (!mount) return;
 
+    const heading = document.querySelector('[data-inquiry-heading]');
+    const subtext = document.querySelector('[data-inquiry-subtext]');
+    const acknowledgment = document.querySelector('[data-inquiry-acknowledgment]');
+
     const formId = getFormspreeFormId();
     if (!formId) {
       // Unconfigured: leave the mount empty rather than render a form with
-      // nowhere to submit. Only note this locally — never in production.
+      // nowhere to submit. The heading/subtext already default to
+      // form-free copy in the HTML, and the acknowledgment stays hidden,
+      // so visitors are never told about a form that isn't there. Only
+      // note this locally — never in production.
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         console.info('[Carunel] FORMSPREE_FORM_ID is not set in js/config.js — the inquiry form is hidden. The direct-email option on this page still works.');
       }
       return;
     }
+
+    if (heading) heading.textContent = 'Start a General Inquiry';
+    if (subtext) subtext.textContent = 'Prefer not to use a form? Email us directly — both reach the same inbox.';
+    if (acknowledgment) acknowledgment.hidden = false;
 
     mount.outerHTML = renderInquiryForm(formId);
 
@@ -635,17 +662,22 @@
     });
   }
 
-  /* --- Scroll Reveal --- */
+  /* --- Scroll Reveal ---
+     Progressive enhancement: .reveal content is visible by default (see
+     styles.css). The hidden pre-animation state only applies once this
+     script confirms IntersectionObserver is available and adds
+     .reveal-enabled to <html> — so content stays visible if this script
+     never runs, errors out, or hasn't executed yet (including in
+     automated screenshots taken before scripting completes). */
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
     if (!els.length) return;
 
-    // Content must never stay permanently hidden if IntersectionObserver
-    // isn't supported — reveal everything immediately as a safe fallback.
-    if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('revealed'));
-      return;
-    }
+    // IntersectionObserver isn't supported: leave .reveal-enabled off so
+    // everything stays at its visible default.
+    if (!('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('reveal-enabled');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -660,6 +692,18 @@
     );
 
     els.forEach((el) => observer.observe(el));
+
+    // Safety net: a section that is never scrolled into view (e.g. an
+    // automated full-page capture taken without scrolling) would otherwise
+    // stay hidden under .reveal-enabled forever, since it never intersects
+    // the viewport. Force everything visible shortly after load so no
+    // capture — or slow/interrupted visit — shows a blank section; anyone
+    // actively scrolling will already have triggered the natural reveal
+    // well before this fires.
+    window.setTimeout(() => {
+      els.forEach((el) => el.classList.add('revealed'));
+      observer.disconnect();
+    }, 1200);
   }
 
   /* --- Init --- */
