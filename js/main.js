@@ -421,6 +421,46 @@
   // ID is configured (see js/config.js / .env.example). If unconfigured,
   // the mount stays empty rather than rendering a form with nowhere to
   // submit — the "Email Carunel Directly" link on the page is the fallback.
+
+  // reCAPTCHA v3 site key. This is a public identifier meant to be embedded
+  // in client-side code (unlike the Secret Key, which only ever lives in
+  // Formspree's own reCAPTCHA integration settings — never here).
+  const RECAPTCHA_SITE_KEY = '6LdL9bQtAAAAAO4uzTQvUcSNaww4EfXCtezLoA13';
+  let recaptchaScriptPromise = null;
+
+  // Loads the reCAPTCHA v3 script once, only when the inquiry form actually
+  // renders (never site-wide). Resolves once window.grecaptcha is usable.
+  function loadRecaptchaScript() {
+    if (recaptchaScriptPromise) return recaptchaScriptPromise;
+    recaptchaScriptPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load reCAPTCHA'));
+      document.head.appendChild(script);
+    });
+    return recaptchaScriptPromise;
+  }
+
+  // Generates a fresh reCAPTCHA v3 token immediately before each submission
+  // (tokens are short-lived and tied to one action, so they can't be
+  // pre-fetched on page load). Rejects if the script never loaded/executed.
+  function getRecaptchaToken() {
+    return loadRecaptchaScript().then(() => new Promise((resolve, reject) => {
+      if (!window.grecaptcha) {
+        reject(new Error('reCAPTCHA unavailable'));
+        return;
+      }
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
+          .then(resolve, reject);
+      });
+    }));
+  }
+
   const INQUIRY_TYPES = [
     'Organizational Consulting',
     'Workshops & Training',
@@ -578,6 +618,10 @@
     if (emailFallbackCard) emailFallbackCard.hidden = true;
 
     mount.outerHTML = renderInquiryForm(formId);
+    // Start loading reCAPTCHA as soon as the form mounts rather than
+    // waiting for submit, so the token is quick to generate once the
+    // visitor actually clicks "Send Message".
+    loadRecaptchaScript().catch(() => {});
 
     const form = document.getElementById('carunel-inquiry-form');
     if (!form) return;
@@ -662,12 +706,19 @@
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 20000);
 
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      })
+      // Generate a fresh, single-use token immediately before submitting —
+      // reCAPTCHA v3 tokens are short-lived and scoped to one action, so
+      // they can't be fetched ahead of time and reused.
+      getRecaptchaToken()
+        .then((token) => {
+          payload['g-recaptcha-response'] = token;
+          return fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+          });
+        })
         .then((response) => {
           if (response.ok) {
             form.reset();
