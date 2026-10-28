@@ -15,7 +15,6 @@
       book: 'https://hyperagiletesting.com/book',
       framework: 'https://hyperagiletesting.com/framework',
       qualityLoop: 'https://hyperagiletesting.com/quality-loop',
-      consulting: 'https://hyperagiletesting.com/consulting'
     }
   };
 
@@ -53,12 +52,12 @@
       title: 'Hyper-Agile Testing',
       subtitle: 'Delivering Software in an AI-Accelerated World',
       author: 'Evgeny Tkachenko',
-      year: null,
-      status: 'forthcoming',
-      coverEyebrow: 'Forthcoming from Apress',
+      year: 2026,
+      status: 'published',
+      coverEyebrow: 'Published by Apress',
       coverImage: 'assets/images/hyper-agile-testing-cover.png',
-      coverImageAlt: 'Hyper-Agile Testing: Delivering Software in an AI-Accelerated World, by Evgeny Tkachenko, forthcoming from Apress.',
-      description: 'A forthcoming Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.',
+      coverImageAlt: 'Hyper-Agile Testing: Delivering Software in an AI-Accelerated World, by Evgeny Tkachenko, published by Apress in October 2026.',
+      description: 'An Apress book by Evgeny Tkachenko about connecting product intent, risk, validation, automation, release readiness, and production learning in AI-accelerated software delivery.',
       exploreUrl: 'https://hyperagiletesting.com/book',
       amazonUrl: 'https://www.amazon.com/Hyper-Agile-Testing-Delivering-Software-AI-Accelerated/dp/B0HBHS228V'
     },
@@ -131,7 +130,6 @@
             <span class="site-header__logo-text">Carunel</span>
           </a>
         <nav class="site-nav" role="navigation" aria-label="Main navigation">
-          <a href="${prefix}organizations/" class="site-nav__link${active('organizations')}"${ariaCurrent('organizations')}>For Organizations</a>
           <a href="${prefix}books-media/" class="site-nav__link${active('books-media')}"${ariaCurrent('books-media')}>Books &amp; Frameworks</a>
           <a href="${prefix}products/" class="site-nav__link${active('products')}"${ariaCurrent('products')}>Learning Apps</a>
           <a href="${prefix}about/" class="site-nav__link${active('about')}"${ariaCurrent('about')}>About</a>
@@ -194,15 +192,9 @@
               <img src="${prefix}assets/images/carunel-symbol.svg" alt="" class="site-footer__logo-icon">
               <span class="site-footer__logo-text">Carunel</span>
             </div>
-            <p class="site-footer__tagline">Quality Engineering consulting, practical frameworks, professional books, and thoughtful learning products.</p>
+            <p class="site-footer__tagline">Quality Engineering leadership, practical books and frameworks, and thoughtful learning apps.</p>
           </div>
           <div class="site-footer__links">
-            <div class="site-footer__link-group">
-              <h4>For Organizations</h4>
-              <a href="${prefix}organizations/">Consulting Overview</a>
-              <a href="${SITE.hyperAgile.home}" target="_blank" rel="noopener noreferrer">Hyper-Agile Quality Engineering&trade;</a>
-              <a href="${SITE.hyperAgile.consulting}" target="_blank" rel="noopener noreferrer">Consulting</a>
-            </div>
             <div class="site-footer__link-group">
               <h4>Books &amp; Frameworks</h4>
               <a href="${prefix}books-media/">All Books</a>
@@ -231,7 +223,7 @@
           </div>
         </div>
         <div class="site-footer__bottom">
-          <p class="site-footer__attribution">Evgeny Tkachenko is the originator of Hyper-Agile Quality Engineering&trade;. Organizational consulting, implementation support, workshops, and training are offered by ${SITE.legalName}.</p>
+          <p class="site-footer__attribution">Evgeny Tkachenko is the originator of Hyper-Agile Quality Engineering&trade;. Explore his books, engineering ideas, and learning apps through ${SITE.legalName}.</p>
           <span class="site-footer__copyright">&copy; ${year} ${SITE.legalName}. All rights reserved.</span>
         </div>
       </div>
@@ -462,8 +454,7 @@
   }
 
   const INQUIRY_TYPES = [
-    'Organizational Consulting',
-    'Workshops & Training',
+    'Quality Engineering Leadership',
     'Books & Publishing',
     'Speaking & Media',
     'Partnerships',
@@ -474,9 +465,7 @@
   const WARNING_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
   // Turns an INQUIRY_TYPES label into the URL-friendly slug used by the
-  // `?type=` query param (e.g. cross-page CTAs like "Discuss an
-  // Organizational Engagement" linking to /contact/?type=organizational-
-  // consulting#inquiry-form). Derived from INQUIRY_TYPES rather than a
+  // `?type=` query param for contact links. Derived from INQUIRY_TYPES rather than a
   // separate hardcoded map, so it can't drift out of sync with it.
   function slugifyInquiryType(label) {
     return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -627,8 +616,7 @@
     if (!form) return;
 
     // Pre-select the inquiry type when arriving via a `?type=<slug>` link
-    // (see the "Discuss an Organizational Engagement" CTAs on the
-    // homepage and /organizations/), so visitors don't have to repeat a
+    // from a contact card, so visitors do not have to repeat a
     // choice they've effectively already made by clicking that CTA.
     const requestedType = new URLSearchParams(location.search).get('type');
     if (requestedType) {

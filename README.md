@@ -161,3 +161,9 @@ The site uses relative paths (`css/styles.css`, `../js/main.js`) so it works cor
 - Shared header/footer via JS injection
 - Scroll-reveal animations via IntersectionObserver, progressive enhancement (content is visible by default; see `.reveal` / `.reveal-enabled` in `css/styles.css` and `initReveal()` in `js/main.js`)
 - Responsive: desktop, tablet, mobile
+
+## Temporary leadership and portfolio focus (October 2026)
+
+The public site now emphasizes Quality Engineering leadership, books/frameworks, and learning apps. Consulting navigation, sales copy, and inquiry options are removed. `/organizations/` is a noindex redirect to `/books-media/` and is omitted from the sitemap. App pages, store links, and privacy/terms pages are preserved.
+
+The earlier consulting content remains in Git history. To restore that positioning, revert the dedicated portfolio-focus commit and review any subsequent content changes before deploying. Do not restore only the menu: review homepage, About, Contact, shared footer, inquiry types, and sitemap together.
