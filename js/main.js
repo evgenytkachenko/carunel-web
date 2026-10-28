@@ -9,7 +9,7 @@
   const SITE = {
     companyName: 'Carunel',
     legalName: 'Carunel LLC',
-    contactEmail: 'business@carunel.com',
+    contactEmail: 'eugene@carunel.com',
     hyperAgile: {
       home: 'https://hyperagiletesting.com/',
       book: 'https://hyperagiletesting.com/book',
@@ -722,12 +722,12 @@
             successEl.focus();
           } else {
             status.setAttribute('data-state', 'error');
-            status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at business@carunel.com.';
+            status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at eugene@carunel.com.';
           }
         })
         .catch(() => {
           status.setAttribute('data-state', 'error');
-          status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at business@carunel.com.';
+          status.textContent = 'Something went wrong sending your message. Please try again, or email us directly at eugene@carunel.com.';
         })
         .finally(() => {
           clearTimeout(timeoutId);
